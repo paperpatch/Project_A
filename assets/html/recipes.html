@@ -13,30 +13,24 @@
   <title>Open Fridge</title>
 </head>
 
-<body class="flex-container">
-    
-  <nav class="sideNav">
-    <h1 class="ourName">Open Fridge</h1>
-    <p class="ourName" id="slogan">Good Meals, Good Life</p>
-    <hr>
-    <!-- Not sure if I want to keep this line below -->
-    <p class="ourName">Type in an ingredient or recipe below</p> 
-    <input class="searchBar" type="text" placeholder="Enter recipe name here">
+<body class="grid-x">
+  <nav class="large-2 medium-3 small-4">
+    <img class="align-middle" src="/assets/images/open_fridge.PNG" style="width: 100%;">
+    <p>Good Meals, Good Life</p>
     <hr>
     <div class="row">
-      <div class="medium-4 column">
+      <div class="medium-12 columns">
         <ul class="menu vertical">
-          <h3 class="titleNav">Menu</h3>
+          <h4 class="">Menu</h4>
           <li><a href="/index.html">Home</a></li>
-          <li><a href="recipes.html">Discover Recipes</a></li>
-          <li><a href="#">Random</a></li>
+          <li><a href="./recipes.html">Discover Recipes</a></li>
         </ul>
       </div>
     </div>
     <hr>
-    <div class="medium-4 column">
+    <div class="medium-12 columns">
       <ul class="menu vertical">
-        <h3 class="titleNav">Quick Recipes</h3>
+        <h4 class="">Quick Recipes</h4>
         <li><a href="#">Chicken Dish</a></li>
         <li><a href="#">Tomato Soup</a></li>
         <li><a href="#">Random</a></li>
@@ -44,138 +38,102 @@
     </div>
   </nav>
 
+  <main class="large-10 medium-9 small-8 column">
+    <form>
+      <div class="grid-x">
+        <label class="medium-7 fa-solid fa-magnifying-glass fa-lg text-right" for="input-search"></label>
+        <input id="input-search" class="medium-5" type='text' placeholder="Search for Recipes">
+      </div>
+    </form>
+    <div class="grid-x grid-padding-x align-middle align-justify front-page">
+      <section class="large-1 medium-3 small-12"></section>
+      <section class="large-10 medium-6 small-12">
+        <div class="flex-child-auto">
+          <h2>Discover Recipes! - LINK HTML PAGE HERE</h2>
+          <br>
+        </div>
+      </section>
+      <section class="large-1 medium-3 small-12"></section>
+      
 
-  <!-- <main class="grid-container">
-    <div class="row">
-      <section class="startRecipe">
-        <div class="flex-child-auto">
-          <h2>Let's Start Cooking With Recipes!</h2>
-          <p>Want to learn how to cook but confused on how to start?</p>
-          <p>No need to worry! Check out below or click <a href="#">here</a>!</p>
-        </div>
-      </section>
-      <section class="column callout flex-container align-middle align-spaced">
-        <img>Some random picture. Can be static or randomly changed.
+      <section class="large-8 medium-7 small-12 text-center">
+        <img class="front-image" src="/assets/images/home_cooking.jpg">
       </section>
     </div>
-    <section>
-      <h3>Popular Categories?</h3>
-      <p>Buttons? Tags? A link to go to Discover Recipes?</p>
-    </section>
-    <section>
-      <h3>Trending Recipe?</h3>
-    </section>
-  </main> -->
-  <main class="grid-container">
-    <div class="">
-      <!-- Some Search Button -->
-    </div>
-    <div class="row">
-      <section class="column callout flex-container align-middle align-spaced">
-        <div class="flex-child-auto">
-          <h2>Discover Recipes</h2>
-        </div>
-      </section>
-      <section class="column callout flex-container align-middle">
-        
-        <div class="dropdown">
-            <button class="dropbtn">Filter</button>
-            <div class="dropdown-content" id="filterItems">
-              <a href="#">Protein Diet</a>
-              <a href="#">Vegetarian</a>
-              <a href="#">Vegan</a>
-              <a href="#">Keto</a>
-            </div>
+    <section class="callout">
+      <h4>Popular Categories - choices depends on what info our API has</h4>
+      <div class="row">
+        <div class="columns medium-6">
+          <div class="button-group">
+            <a class="button">Chicken</a>
+            <a class="button">Salad</a>
+            <a class="button">Beverages</a>
+            <a class="button">Soups</a>
+            <a class="button">Beef</a>
           </div>
+        </div>
+      </div>
+    </section>
+    <section class="callout">
+      <h4>Trending</h4>
+      <div class="grid-x">
 
 
-      </section>
-      <section class="column callout align-middle align-spaced">
-        <h2>Section content</h2>
-        <div class="grid-container">
-          <div class="grid-x grid-margin-x small-up-2 medium-up-3">
-            <div class="cell">
-              <div class="card" style="width: 300px;">
-                <div class="card-divider">
-                  Card name
-                </div>
-                <img src="" alt="Replace me!">
-                <div class="card-selection">
-                  <h4>Dish Name</h4>
-                  <li>[clock icon] 1hr</li>
-                  <li>[Shopping Cart icon] 8 ingrediants</li>
-                </div>
-              </div>
-            </div>
-            <div class="cell">
-              <div class="card" style="width: 300px;">
-                <div class="card-divider">
-                  Card name
-                </div>
-                <img src="" alt="Replace me!">
-                <div class="card-selection">
-                  <h4>Dish Name</h4>
-                  <li>[clock icon] 1hr</li>
-                  <li>[Shopping Cart icon] 8 ingrediants</li>
-                </div>
-              </div>
-            </div>
-            <div class="cell">
-              <div class="card" style="width: 300px;">
-                <div class="card-divider">
-                  Card name
-                </div>
-                <img src="" alt="Replace me!">
-                <div class="card-selection">
-                  <h4>Dish Name</h4>
-                  <li>[clock icon] 1hr</li>
-                  <li>[Shopping Cart icon] 8 ingrediants</li>
-                </div>
-              </div>
-            </div>
-            <div class="cell">
-              <div class="card" style="width: 300px;">
-                <div class="card-divider">
-                  Card name
-                </div>
-                <img src="" alt="Replace me!">
-                <div class="card-selection">
-                  <h4>Dish Name</h4>
-                  <li>[clock icon] 1hr</li>
-                  <li>[Shopping Cart icon] 8 ingrediants</li>
-                </div>
-              </div>
-            </div>
-            <div class="cell">
-              <div class="card" style="width: 300px;">
-                <div class="card-divider">
-                  Card name
-                </div>
-                <img src="" alt="Replace me!">
-                <div class="card-selection">
-                  <h4>Dish Name</h4>
-                  <li>[clock icon] 1hr</li>
-                  <li>[Shopping Cart icon] 8 ingrediants</li>
-                </div>
-              </div>
-            </div>
-            <div class="cell">
-              <div class="card" style="width: 300px;">
-                <div class="card-divider">
-                  Card name
-                </div>
-                <img src="" alt="Replace me!">
-                <div class="card-selection">
-                  <h4>Dish Name</h4>
-                  <li>[clock icon] 1hr</li>
-                  <li>[Shopping Cart icon] 8 ingrediants</li>
-                </div>
-              </div>
+        <div class="card small-3">
+          <div class="card-section">
+            <img src="http://placehold.it/300x200">
+          </div>
+          <div class="card-section">
+            <h5>Dish Name</h5>
+            <div class="grid-x">
+              <i class="small-1 fa-solid fa-clock"></i>
+              <p class="small-11">1 hours</p>
+              <p>? ingredients</p>
             </div>
           </div>
         </div>
-      </section>
-    </div>
+        <div class="card small-3">
+          <div class="card-section">
+            <img src="http://placehold.it/300x200">
+          </div>
+          <div class="card-section">
+            <h5>Dish Name</h5>
+            <div class="grid-x">
+              <i class="small-1 fa-solid fa-clock"></i>
+              <p class="small-11">1 hours</p>
+              <p>? ingredients</p>
+            </div>
+          </div>
+        </div>
+        <div class="card small-3">
+          <div class="card-section">
+            <img src="http://placehold.it/300x200">
+          </div>
+          <div class="card-section">
+            <h5>Dish Name</h5>
+            <div class="grid-x">
+              <i class="small-1 fa-solid fa-clock"></i>
+              <p class="small-11">1 hours</p>
+              <p>? ingredients</p>
+            </div>
+          </div>
+        </div>
+        <div class="card small-3">
+          <div class="card-section">
+            <img src="http://placehold.it/300x200">
+          </div>
+          <div class="card-section">
+            <h5>Dish Name</h5>
+            <div class="grid-x">
+              <i class="small-1 fa-solid fa-clock"></i>
+              <p class="small-11">1 hours</p>
+              <p>? ingredients</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
   </main>
   <footer>
 
