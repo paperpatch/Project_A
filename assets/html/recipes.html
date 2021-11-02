@@ -14,8 +14,10 @@
 </head>
 
 <body class="flex-container">
+  
     
-  <nav class="sideNav">
+  <nav class="sideNav" id="mySideNav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <h1 class="ourName">Open Fridge</h1>
     <p class="ourName" id="slogan">Good Meals, Good Life</p>
     <hr>
@@ -42,7 +44,13 @@
         <li><a href="#">Random</a></li>
       </ul>
     </div>
+    
+    </div>
+    
   </nav>
+  <div id="main">
+    <button class="openbtn" onclick="openNav()">&#9776; Open Sidebar</button>
+    </div> 
 
 
   <!-- <main class="grid-container">
@@ -193,6 +201,7 @@
   <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.3/dist/js/foundation.min.js" crossorigin="anonymous">
   </script>
   <script src="./assets/js/script.js"></script>
+  <script src="/assets/js/navbar.js"></script>
 </body>
 
 </html>
