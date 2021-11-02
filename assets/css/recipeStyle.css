@@ -1,149 +1,94 @@
-body {
-    height: 100%;
-    margin: 15px;
-  }
-
-  /* The sidebar menu */
+/* <<<<<<< Recipe */
+/* Start of Nav Bar css */
 .sideNav {
-  padding-left: 20px;
-  height: 100%; /* 100% Full-height */
-  width: 0; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
-  top: 0;
-  left: 0;
-  background-color: #ffffff;
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 20px;
+  left: 10px;
+  background: #eee;
+  overflow-x: hidden;
+  padding: 8px 0;
+  border-radius: 5%;
+  
 }
 
-/* The sidebar links */
 .sideNav a {
-  padding: 8px 8px 8px 32px;
+  padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: #2196F3;
   display: block;
-  transition: 0.3s;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  
 }
 
-/* When you mouse over the navigation links, change their color */
 .sideNav a:hover {
-  color: #f1f1f1;
+  color: #064579;
   text-decoration: underline;
 }
 
-/* Position and style the close button (top right corner) */
-.sideNav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+.titleNav {
+  padding-left: 10px;
+  text-decoration: underline;
+  text-align: center;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-/* The button used to open the sidebar */
-.openbtn {
-  font-size: 20px;
-  cursor: pointer;
-  background-color: #111;
-  color: white;
-  padding: 10px 15px;
+.ourName {
+  text-align: center;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  
+}
+
+#slogan {
+  font-weight: 750;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+/* End of Nav Bar CSS */
+
+/* Navigation Section */
+
+nav {
+  padding: 25px;
+}
+form {
+  padding: 30px;
+}
+label {
+  padding: 20px;
+}
+
+/* Main Section */
+
+.front-page {
+  margin: 10px;
+}
+.front-image {
+  max-width: 50rem;
+  max-height: 50rem;
+}
+h2 {
+  padding: 1rem;
+}
+p {
+  margin: 0;
+  padding: 0 0.5rem;
+}
+
+.card {
   border: none;
 }
+/* >>>>>>> develop */
 
-.openbtn:hover {
-  background-color: #444;
+.centerCallouts {
+  margin-right: 50px;
 }
 
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-#main {
-  transition: margin-left .5s; /* If you want a transition effect */
-  padding: 20px;
-  margin-left: 60px;
+.availableRecipes {
+  text-align: center;
+  padding-right: 150px;
+  text-decoration: underline;
 }
 
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .sidebar {padding-top: 15px;}
-  .sidebar a {font-size: 18px;}
-}
-  
-  .titleNav {
-    padding-left: 10px;
-    text-decoration: underline;
-    text-align: center;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  }
-  
-  .ourName {
-    text-align: center;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    
-  }
-  
-  #slogan {
-    font-weight: 750;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  }
 
-  /* .searchBar {
-
-  } */
-  /* End of Nav Bar CSS */
-
-  /* Start of middle body area */
-  
-  .startRecipe {
-      width: 800x;
-      height: 210px;
-      background-color: #C2D9FE;
-      padding: 10px;
-      border: 1px #064579 solid;
-      border-radius: 7px;
-
-  }
-  /* End of Nav Bar CSS */
-
-   /* Filter section */
-  /* Drop down button */
-  .dropbtn {
-    background-color: #04AA6D;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-  }
-
-  /* Container div - positions the dropdown text */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-
-  /* Links inside the dropdown */
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd;}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
