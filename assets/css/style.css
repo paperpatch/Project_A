@@ -1,3 +1,32 @@
-body {
-  height: 100%;
+/* Navigation Section */
+
+nav {
+  padding: 25px;
+}
+form {
+  padding: 30px;
+}
+label {
+  padding: 20px;
+}
+
+/* Main Section */
+
+.front-page {
+  margin: 10px;
+}
+.front-image {
+  max-width: 50rem;
+  max-height: 50rem;
+}
+h2 {
+  padding: 1rem;
+}
+p {
+  margin: 0;
+  padding: 0 0.5rem;
+}
+
+.card {
+  border: none;
 }
