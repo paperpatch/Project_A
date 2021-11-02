@@ -14,8 +14,10 @@
 </head>
 
 <body class="flex-container">
+  
     
-  <nav class="sideNav">
+  <nav class="sideNav" id="mySideNav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <h1 class="ourName">Open Fridge</h1>
     <p class="ourName" id="slogan">Good Meals, Good Life</p>
     <hr>
@@ -42,8 +44,13 @@
         <li><a href="#">Random</a></li>
       </ul>
     </div>
+    
+    </div>
+    
   </nav>
-
+  <div id="main">
+    <button class="openbtn" onclick="openNav()">&#9776; Open Sidebar</button>
+    </div> 
 
   <main class="grid-container">
     <div class="row">
@@ -65,6 +72,117 @@
     <section>
       <h3>Trending Recipe?</h3>
     </section>
+  </main> -->
+  <main class="grid-container">
+    <div class="">
+      <!-- Some Search Button -->
+    </div>
+    <div class="row">
+      <section class="column callout flex-container align-middle align-spaced">
+        <div class="flex-child-auto">
+          <h2>Discover Recipes</h2>
+        </div>
+      </section>
+      <section class="column callout flex-container align-middle">
+        
+        <div class="dropdown">
+            <button class="dropbtn">Filter</button>
+            <div class="dropdown-content" id="filterItems">
+              <a href="#">Protein Diet</a>
+              <a href="#">Vegetarian</a>
+              <a href="#">Vegan</a>
+              <a href="#">Keto</a>
+            </div>
+          </div>
+
+
+      </section>
+      <section class="column callout align-middle align-spaced">
+        <h2>Section content</h2>
+        <div class="grid-container">
+          <div class="grid-x grid-margin-x small-up-2 medium-up-3">
+            <div class="cell">
+              <div class="card" style="width: 300px;">
+                <div class="card-divider">
+                  Card name
+                </div>
+                <img src="" alt="Replace me!">
+                <div class="card-selection">
+                  <h4>Dish Name</h4>
+                  <li>[clock icon] 1hr</li>
+                  <li>[Shopping Cart icon] 8 ingrediants</li>
+                </div>
+              </div>
+            </div>
+            <div class="cell">
+              <div class="card" style="width: 300px;">
+                <div class="card-divider">
+                  Card name
+                </div>
+                <img src="" alt="Replace me!">
+                <div class="card-selection">
+                  <h4>Dish Name</h4>
+                  <li>[clock icon] 1hr</li>
+                  <li>[Shopping Cart icon] 8 ingrediants</li>
+                </div>
+              </div>
+            </div>
+            <div class="cell">
+              <div class="card" style="width: 300px;">
+                <div class="card-divider">
+                  Card name
+                </div>
+                <img src="" alt="Replace me!">
+                <div class="card-selection">
+                  <h4>Dish Name</h4>
+                  <li>[clock icon] 1hr</li>
+                  <li>[Shopping Cart icon] 8 ingrediants</li>
+                </div>
+              </div>
+            </div>
+            <div class="cell">
+              <div class="card" style="width: 300px;">
+                <div class="card-divider">
+                  Card name
+                </div>
+                <img src="" alt="Replace me!">
+                <div class="card-selection">
+                  <h4>Dish Name</h4>
+                  <li>[clock icon] 1hr</li>
+                  <li>[Shopping Cart icon] 8 ingrediants</li>
+                </div>
+              </div>
+            </div>
+            <div class="cell">
+              <div class="card" style="width: 300px;">
+                <div class="card-divider">
+                  Card name
+                </div>
+                <img src="" alt="Replace me!">
+                <div class="card-selection">
+                  <h4>Dish Name</h4>
+                  <li>[clock icon] 1hr</li>
+                  <li>[Shopping Cart icon] 8 ingrediants</li>
+                </div>
+              </div>
+            </div>
+            <div class="cell">
+              <div class="card" style="width: 300px;">
+                <div class="card-divider">
+                  Card name
+                </div>
+                <img src="" alt="Replace me!">
+                <div class="card-selection">
+                  <h4>Dish Name</h4>
+                  <li>[clock icon] 1hr</li>
+                  <li>[Shopping Cart icon] 8 ingrediants</li>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
   <footer>
 
@@ -82,6 +200,7 @@
   <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.3/dist/js/foundation.min.js" crossorigin="anonymous">
   </script>
   <script src="./assets/js/script.js"></script>
+  <script src="/assets/js/navbar.js"></script>
 </body>
 
 </html>
