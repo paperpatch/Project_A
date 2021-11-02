@@ -53,3 +53,15 @@ body {
 
   } */
   /* End of Nav Bar CSS */
+
+  /* Start of middle body area */
+  
+  .startRecipe {
+      width: 800x;
+      height: 210px;
+      background-color: #C2D9FE;
+      padding: 10px;
+      border: 1px #064579 solid;
+      border-radius: 7px;
+
+  }
