@@ -1,3 +1,7 @@
+var apiKey = "3a44b6d72cmsh2c9491cf44c4730p152adajsn7b494b9925d6";
+
+// TASTY API Autocompletes - Do we need?
+/* 
 var foodRecipeSearch = function (searchValue) {
 
   // auto-completes the search and gives a list
@@ -25,5 +29,36 @@ var foodRecipeSearch = function (searchValue) {
       console.error(err);
     }); 
 };
-  
-foodRecipeSearch($(this).text());
+ */
+// TASTY API Recipe List - Do we need?
+/* 
+var foodRecipeFilter = function () {
+  fetch("https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes", {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "tasty.p.rapidapi.com",
+      "x-rapidapi-key": apiKey,
+    }
+  })
+  .then(response => {
+    console.log(response);
+    if (response.ok) {
+      response.json().then(function (data) {
+        console.log(data);
+
+        // add recipe filter function using `for loop`[i] and appending it to the list. Max a max limit?
+      })
+    } else {
+      // need to change this alert to modal
+      alert("Error: " + response.statusText)
+    }
+  })
+  .catch(err => {
+    console.error(err);
+  });
+}
+ */
+// Load Search Recipe from recentRecipe (first HTML page)
+
+var recipeStorage = JSON.parse(window.localStorage.getItem("searchRecipe")) || [];
+foodRecipeSearch(recipeStorage);

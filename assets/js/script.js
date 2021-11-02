@@ -1,4 +1,3 @@
-var apiKey = "3a44b6d72cmsh2c9491cf44c4730p152adajsn7b494b9925d6";
 var foodForm = $("#food-form");
 
 // Search Section
@@ -21,7 +20,6 @@ var formSubmitHandler = function (event) {
 
 
 // Event Listener Section
-// Top Search Button
 foodForm.addEventListener("submit", formSubmitHandler);
 
 // Appended Recent Search List for Details HTML Page
@@ -34,4 +32,3 @@ $("#recipes-container").on("click", "li", function () {
   // redirect to page
   window.location.assign('./assets/html/detail.html')
 })
-
