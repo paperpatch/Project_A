@@ -54,7 +54,7 @@ var getTrendingData = function(data) {
     let foodName = trendingRecipe[i].name;
     let foodImg = trendingRecipe[i].thumbnail_url;
     let foodTime = trendingRecipe[i].cook_time_minutes;
-    let foodServings = trendingRecipe[i].yields;
+    let foodServings = trendingRecipe[i].num_Servings;
     let foodID = trendingRecipe[i].id
 
     console.log(foodID);
@@ -65,21 +65,17 @@ var getTrendingData = function(data) {
     let trendingImg = $("<img>").attr("src", foodImg).addClass("trending-img");
     let trendingSection2 = $("<div>").addClass("card-section");
     let trendingName = $("<h5>").text(foodName);
-    let trendingGrid = $("<div>").addClass("grix-x");
-    let trendingIcon = $("<i>").addClass("small-1 fa-solid fa-clock");
-    let trendingTime = $("<p>").addClass("small-11").text(foodTime + " minutes");
-    let trendingServings = $("<p>").text(foodServings)
+    let trendingTime = $("<p>").text(foodTime + " minutes");
+    let trendingServings = $("<p>").text("Serves: " + foodServings)
 
     console.log(trendingCard);
     // append cards
     $(".trendingRecipes").append(trendingCard);
     trendingCard.append(trendingSection, trendingSection2);
     trendingSection.append(trendingImg);
-    trendingSection2.append(trendingName, trendingGrid);
-    trendingGrid.append(trendingIcon, trendingTime, trendingServings);
+    trendingSection2.append(trendingName, trendingTime, trendingServings);
   }
 }
-
 
 // Appended Recent Search List for Details HTML Page
 $("#recipes-container").on("click", "li", function () {
