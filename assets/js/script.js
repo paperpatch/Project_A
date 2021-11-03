@@ -65,7 +65,7 @@ var getTrendingData = function(data) {
     let trendingImg = $("<img>").attr("src", foodImg).addClass("trending-img");
     let trendingSection2 = $("<div>").addClass("card-section");
     let trendingName = $("<h5>").text(foodName);
-    let trendingRating = $("<p>").text("Recommended: " + foodRating);
+    let trendingRating = $("<p>").text("Liked: " + foodRating);
     let trendingScore = $("<p>").text((foodScore * 100).toFixed(2) + "%");
 
     console.log(trendingCard);
