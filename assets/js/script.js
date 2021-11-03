@@ -46,15 +46,15 @@ var trendingRecipe = function() {
 
 var getTrendingData = function(data) {
   // get trending dishes
-  let trendingRecipe = data.results[3].items;
+  let trendingRecipe = data.results[2].items;
   console.log(trendingRecipe);
 
   for (let i=0; i < trendingRecipe.length-2; i++) {
     // get variables
     let foodName = trendingRecipe[i].name;
     let foodImg = trendingRecipe[i].thumbnail_url;
-    let foodTime = trendingRecipe[i].cook_time_minutes;
-    let foodServings = trendingRecipe[i].num_Servings;
+    let foodRating = trendingRecipe[i].user_ratings.count_positive;
+    let foodScore = trendingRecipe[i].user_ratings.score;
     let foodID = trendingRecipe[i].id
 
     console.log(foodID);
@@ -65,15 +65,15 @@ var getTrendingData = function(data) {
     let trendingImg = $("<img>").attr("src", foodImg).addClass("trending-img");
     let trendingSection2 = $("<div>").addClass("card-section");
     let trendingName = $("<h5>").text(foodName);
-    let trendingTime = $("<p>").text(foodTime + " minutes");
-    let trendingServings = $("<p>").text("Serves: " + foodServings)
+    let trendingRating = $("<p>").text("Recommended: " + foodRating);
+    let trendingScore = $("<p>").text((foodScore * 100).toFixed(2) + "%");
 
     console.log(trendingCard);
     // append cards
     $(".trendingRecipes").append(trendingCard);
     trendingCard.append(trendingSection, trendingSection2);
     trendingSection.append(trendingImg);
-    trendingSection2.append(trendingName, trendingTime, trendingServings);
+    trendingSection2.append(trendingName, trendingRating, trendingScore);
   }
 }
 
