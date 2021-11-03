@@ -31,8 +31,8 @@ var trendingRecipe = function() {
     console.log(response);
     if (response.ok) {
       response.json().then(function (data) {
-
-        getRecipeDetail(data);
+        console.log(data);
+        getTrendingData(data);
       })
     } else {
       // need to change this alert to modal
@@ -42,6 +42,42 @@ var trendingRecipe = function() {
   .catch(err => {
     console.error(err);
   });
+}
+
+var getTrendingData = function(data) {
+  // get trending dishes
+  let trendingRecipe = data.results[3].items;
+  console.log(trendingRecipe);
+
+  for (let i=0; i < trendingRecipe.length-2; i++) {
+    // get variables
+    let foodName = trendingRecipe[i].name;
+    let foodImg = trendingRecipe[i].thumbnail_url;
+    let foodTime = trendingRecipe[i].cook_time_minutes;
+    let foodServings = trendingRecipe[i].yields;
+    let foodID = trendingRecipe[i].id
+
+    console.log(foodID);
+
+    // create card for each [i]
+    let trendingCard = $("<div>").addClass("card small-3").attr("id", foodID);
+    let trendingSection = $("<div>").addClass("card-section");
+    let trendingImg = $("<img>").attr("src", foodImg).addClass("trending-img");
+    let trendingSection2 = $("<div>").addClass("card-section");
+    let trendingName = $("<h5>").text(foodName);
+    let trendingGrid = $("<div>").addClass("grix-x");
+    let trendingIcon = $("<i>").addClass("small-1 fa-solid fa-clock");
+    let trendingTime = $("<p>").addClass("small-11").text(foodTime + " minutes");
+    let trendingServings = $("<p>").text(foodServings)
+
+    console.log(trendingCard);
+    // append cards
+    $(".trendingRecipes").append(trendingCard);
+    trendingCard.append(trendingSection, trendingSection2);
+    trendingSection.append(trendingImg);
+    trendingSection2.append(trendingName, trendingGrid);
+    trendingGrid.append(trendingIcon, trendingTime, trendingServings);
+  }
 }
 
 
@@ -58,3 +94,5 @@ $("#recipes-container").on("click", "li", function () {
 
 // Event Listener Section
 foodForm.addEventListener("submit", formSubmitHandler);
+
+trendingRecipe();
