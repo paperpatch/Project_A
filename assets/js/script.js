@@ -1,23 +1,27 @@
 var apiKey = "3a44b6d72cmsh2c9491cf44c4730p152adajsn7b494b9925d6";
-var foodForm = document.querySelector("#food-form");
+var searchForm = document.querySelector("#search-form");
+var searchInput = document.querySelector("#input-search");
 
 // Search Section
+
 var formSubmitHandler = function (event) {
   event.preventDefault();
 
   // get value from input element
-  let searchInput = foodForm.value.trim();
-  let searchValue = searchInput.toLowerCase();
+  let searchFood = searchInput.value;
+  console.log(searchFood);
 
   // clear search input and old data
   $("#input-search").val("");
   window.localStorage.removeItem("searchRecipe")
 
   // set to localStorage for Discover Recipes HTML Page
-  window.localStorage.setItem("searchRecipe", JSON.stringify(searchValue));
+  window.localStorage.setItem("searchRecipe", JSON.stringify(searchFood));
   // redirect to page
   window.location.assign('./assets/html/recipes.html')
 }
+
+// Trending Recipes Section
 
 var trendingRecipe = function() {
   fetch("https://tasty.p.rapidapi.com/feeds/list?size=20&timezone=%2B0700&vegetarian=%3CREQUIRED%3E&from=0", {
@@ -57,7 +61,7 @@ var getTrendingData = function(data) {
     let foodScore = trendingRecipe[i].user_ratings.score;
     let foodID = trendingRecipe[i].id
 
-    console.log(foodID);
+    // console.log(foodID);
 
     // create card for each [i]
     let trendingCard = $("<div>").addClass("card small-3").attr("id", foodID);
@@ -89,6 +93,6 @@ $("#recipes-container").on("click", "li", function () {
 })
 
 // Event Listener Section
-foodForm.addEventListener("submit", formSubmitHandler);
+searchForm.addEventListener("submit", formSubmitHandler);
 
 trendingRecipe();
