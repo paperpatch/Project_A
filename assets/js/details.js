@@ -42,8 +42,11 @@ var getRecipeDetail = function(data) {
     var foodServings = String(data.num_servings);
   }
 
-  // get Nutrition Value from food name by running through Ninja API
+  // Get Nutrition Value from food name by running through Ninja API
   fetchNutrition(foodName);
+
+  // Append to Recent Recipe List
+  getRecipeList(foodName);
   
   // create elements
   let detailSection = $("<div>").addClass("card-section");
@@ -138,9 +141,42 @@ var formSubmitHandler = function (event) {
   window.location.assign('./assets/html/recipes.html')
 }
 
+// Recent Search List Function
+
+$("#recipes-container").on("click", "li", function () {
+  // clear old data
+  window.localStorage.removeItem("recentRecipe")
+  // set localStorage for third html page
+  let searchList = $(this).text();
+  window.localStorage.setItem("recentRecipe", JSON.stringify(searchList));
+  // redirect to page
+  window.location.assign('./assets/html/detail.html')
+})
+
+// Append Recipes List Function
+
+var getRecipeList = function (foodName) {
+  // Add recipes to list, don't let it repeat. If recentRecipe can be found. 1 for yes. -1 for no.
+  if (recentRecipeStorage.indexOf(searchValue) === -1) {
+    citiesStorage.push(searchValue);
+    window.localStorage.setItem("recipeList", JSON.stringify(citiesStorage));
+
+    appendRow(searchValue);
+  }
+};
+
+// Append Row Function
+
+var appendRow = function(text) {
+  let li = $("<li>").text(text);
+  $("recipes-container3").append(li);
+}
 
 // Load Recent Local Storage
-var detailStorage = JSON.parse(window.localStorage.getItem("recentRecipe")) || [];
+var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recentRecipe")) || [];
+for (let i=0; i < recentRecipeStorage.length; i++) {
+  appendRow(recentRecipeStorage[i]);
+}
 
 var foodID = "4524"; // Need to pull this data from detailStorage.
 foodDetail();
