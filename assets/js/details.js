@@ -2,7 +2,7 @@ var apiKey = "3a44b6d72cmsh2c9491cf44c4730p152adajsn7b494b9925d6";
 
 /* ---------------------- RECIPE SECTION ---------------------- */
 
-var foodDetail = function() {
+var foodDetail = function(foodID) {
   fetch("https://tasty.p.rapidapi.com/recipes/detail?id=" + foodID, {
     "method": "GET",
     "headers": {
@@ -26,7 +26,10 @@ var foodDetail = function() {
 }
 
 var getRecipeDetail = function(data) {
-  // console.log(data);
+  console.log(data);
+
+  // clear previous data
+  $("#instruction-list").empty();
 
   // get variables
   let foodImg = data.thumbnail_url;
@@ -41,12 +44,13 @@ var getRecipeDetail = function(data) {
   } else {
     var foodServings = String(data.num_servings);
   }
+  let foodID = data.id
 
   // Get Nutrition Value from food name by running through Ninja API
   fetchNutrition(foodName);
 
   // Append to Recent Recipe List
-  getRecipeList(foodName);
+  getRecipeList(foodName, foodID);
   
   // create elements
   let detailSection = $("<div>").addClass("card-section");
@@ -96,6 +100,8 @@ var fetchNutrition = function(foodName) {
 
 var getNutritionDetail = function(data) {
   // console.log(data);
+  // clear previous data
+  $("#nutrition-list").empty();
 
   for (let i = 0; i<data.length ; i++) {
     // create elements
@@ -120,6 +126,28 @@ var getNutritionDetail = function(data) {
   }
 };
 
+/* ---------------------- APPEND RECIPES LIST SECTION ---------------------- */
+
+// Append Recipes List Function
+
+var getRecipeList = function (foodName, foodID) {
+  // Add recipes to list, don't let it repeat. If recentRecipe can be found. 1 for yes. -1 for no.
+  if (recentRecipeStorage.indexOf(foodName) === -1) {
+    recentRecipeStorage.unshift(foodName, foodID);
+    window.localStorage.setItem("recipeRecipe", JSON.stringify(recentRecipeStorage));
+
+    appendRow(foodName, foodID);
+  }
+};
+
+// Append Recipe List Function
+
+var appendRow = function(foodName, foodID) {
+  let li = $("<li>").attr("id", foodID).text(foodName);
+  $("#recipes-container3").append(li);
+}
+
+
 /* ---------------------- UTILITIES SECTION ---------------------- */
 
 // Search Function
@@ -141,42 +169,27 @@ var formSubmitHandler = function (event) {
   window.location.assign('./assets/html/recipes.html')
 }
 
-// Recent Search List Function
-
-$("#recipes-container").on("click", "li", function () {
-  // clear old data
-  window.localStorage.removeItem("recentRecipe")
-  // set localStorage for third html page
-  let searchList = $(this).text();
-  window.localStorage.setItem("recentRecipe", JSON.stringify(searchList));
-  // redirect to page
-  window.location.assign('./assets/html/detail.html')
-})
-
-// Append Recipes List Function
-
-var getRecipeList = function (foodName) {
-  // Add recipes to list, don't let it repeat. If recentRecipe can be found. 1 for yes. -1 for no.
-  if (recentRecipeStorage.indexOf(searchValue) === -1) {
-    citiesStorage.push(searchValue);
-    window.localStorage.setItem("recipeList", JSON.stringify(citiesStorage));
-
-    appendRow(searchValue);
-  }
-};
-
-// Append Row Function
-
-var appendRow = function(text) {
-  let li = $("<li>").text(text);
-  $("recipes-container3").append(li);
-}
-
-// Load Recent Local Storage
-var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recentRecipe")) || [];
+// Load Recent Recipe List Local Storage
+var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
 for (let i=0; i < recentRecipeStorage.length; i++) {
   appendRow(recentRecipeStorage[i]);
 }
 
+// Recent Search List Function
+
+$("#recipes-container3").on("click", "li", function () {
+  // clear old data
+  // window.localStorage.removeItem("recentRecipe")
+  // set localStorage for third html page
+  let searchValue = $(this).attr("id");
+  console.log(searchValue);
+  foodDetail(searchValue);
+  // window.localStorage.setItem("recentRecipe", JSON.stringify(searchList));
+  // redirect to page
+  // window.location.assign('./assets/html/detail.html')
+})
+
+// Load Searched Recipe
+// var foodID = JSON.parse(window.localStorage.getItem("searchRecipe")) || [];
 var foodID = "4524"; // Need to pull this data from detailStorage.
-foodDetail();
+foodDetail(foodID);
