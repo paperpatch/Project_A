@@ -1,5 +1,7 @@
 var apiKey = "3a44b6d72cmsh2c9491cf44c4730p152adajsn7b494b9925d6";
 
+/* ---------------------- RECIPE SECTION ---------------------- */
+
 var foodDetail = function() {
   fetch("https://tasty.p.rapidapi.com/recipes/detail?id=" + foodID, {
     "method": "GET",
@@ -24,7 +26,7 @@ var foodDetail = function() {
 }
 
 var getRecipeDetail = function(data) {
-  console.log(data);
+  // console.log(data);
 
   // get variables
   let foodImg = data.thumbnail_url;
@@ -63,19 +65,21 @@ var getRecipeDetail = function(data) {
   detailInstructionHeader.append(detailUnorderedList);
 }
 
+/* ---------------------- NUTRITION SECTION ---------------------- */
+
 
 var fetchNutrition = function(foodName) {
-  fetch("https://nutrition-by-api-ninjas.p.rapidapi.com/v1/nutrition?query=" + food, {
+  fetch("https://nutrition-by-api-ninjas.p.rapidapi.com/v1/nutrition?query=" + foodName, {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "nutrition-by-api-ninjas.p.rapidapi.com",
-      "x-rapidapi-key": "5eedb034a3msha6329e8ee03862bp1ded91jsn5333cfd314b9"
+      "x-rapidapi-key": apiKey,
     }
   })
   .then(response => {
     if (response.ok) {
       response.json().then(function (data) {
-        getNutritionDetail(data, foodName);
+        getNutritionDetail(data);
       })
     } else {
       // need to change this alert to modal
@@ -87,11 +91,36 @@ var fetchNutrition = function(foodName) {
   });
 }
 
-fetchNutrition();
+var getNutritionDetail = function(data) {
+  console.log(data);
+
+  for (let i = 0; i<data.length ; i++) {
+    // create elements
+    let name = $("<h5>").text(data[i].name);
+    let servingSize = $("<h6>").text("Serving Size: " + data[i].serving_size_g + " grams per serving");
+    let calories = $("<h6>").text("Calories: " + data[i].calories);
+    let fatTotal = $("<h6>").text("Total Fat: " + data[i].fat_total_g + "g");
+    let fatSaturated = $("<h6>").text("Saturated Fat: " + data[i].fat_saturated_g + "g");
+    let cholesterol = $("<h6>").text("Cholesterol: " + data[i].cholesterol_mg + "mg");
+    let sodium = $("<h6>").text("Sodium: " + data[i].sodium_mg + "mg");
+    let carbohydrates = $("<h6>").text("Carbohydrates: " + data[i].carbohydrates_total_g + "g");
+    let fiber = $("<h6>").text("Fiber: " + data[i].fiber_g + "g");
+    let sugar = $("<h6>").text("Sugar: " + data[i].sugar_g + "g");
+    let protein = $("<h6>").text("Protein: " + data[i].protein_g + "g");
+ 
+    var nutriSection = $("<div>").addClass("grix-y");
+    var horizontalLine = $("<hr>")
+
+    // append elements
+    nutriSection.append(horizontalLine, name, servingSize, calories, fatTotal, fatSaturated, cholesterol, sodium, carbohydrates, fiber, sugar, protein)
+    $("#nutrition-list").append(nutriSection);
+  }
+};
+
+/* ---------------------- UTILITIES SECTION ---------------------- */
 
 
-
-// // Load Recent Detail
+// Load Recent Local Storage
 var detailStorage = JSON.parse(window.localStorage.getItem("recentRecipe")) || [];
 
 var foodID = "4524"; // Need to pull this data from detailStorage.
