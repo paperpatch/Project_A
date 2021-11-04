@@ -92,7 +92,7 @@ var fetchNutrition = function(foodName) {
 }
 
 var getNutritionDetail = function(data) {
-  console.log(data);
+  // console.log(data);
 
   for (let i = 0; i<data.length ; i++) {
     // create elements
@@ -118,6 +118,25 @@ var getNutritionDetail = function(data) {
 };
 
 /* ---------------------- UTILITIES SECTION ---------------------- */
+
+// Search Function
+
+var formSubmitHandler = function (event) {
+  event.preventDefault();
+
+  // get value from input element
+  let searchFood = searchInput.value;
+  console.log(searchFood);
+
+  // clear search input and old data
+  $("#input-search3").val("");
+  window.localStorage.removeItem("searchRecipe")
+
+  // set to localStorage for Discover Recipes HTML Page
+  window.localStorage.setItem("searchRecipe", JSON.stringify(searchFood));
+  // redirect to page
+  window.location.assign('./assets/html/recipes.html')
+}
 
 
 // Load Recent Local Storage
