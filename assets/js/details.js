@@ -1,6 +1,6 @@
 var apiKey = "3a44b6d72cmsh2c9491cf44c4730p152adajsn7b494b9925d6";
-var foodID = "5586" // Need to pull this data from something.
-/* 
+var foodID = "4524"; // Need to pull this data from something.
+
 var foodDetail = function() {
   fetch("https://tasty.p.rapidapi.com/recipes/detail?id=" + foodID, {
     "method": "GET",
@@ -13,8 +13,8 @@ var foodDetail = function() {
     console.log(response);
     if (response.ok) {
       response.json().then(function (data) {
-
-        getRecipeDetail(data);
+        console.log(data);
+        // getRecipeDetail(data, input);
       })
     } else {
       // need to change this alert to modal
@@ -26,12 +26,16 @@ var foodDetail = function() {
   });
 }
 
-var getRecipeDetail = function(data) {
-  console.log(data);
+var getRecipeDetail = function(data, input) {
+
+  console.log(data, input);
 
   // add recipe detail function using `for loop`[i] and appending it to the list. Max a max limit?
 }
- */
+
+
+
 // Load Recent Detail
-var detailStorage = JSON.parse(window.localStorage.getItem("recentRecipe")) || [];
-foodDetail(detailStorage);
+// var detailStorage = JSON.parse(window.localStorage.getItem("recentRecipe")) || [];
+// foodDetail(detailStorage);
+foodDetail();

@@ -5,70 +5,107 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.3/dist/css/foundation.min.css"
     crossorigin="anonymous">
-  <link rel="stylesheet" href="../css/detail.css">
+  <link rel="stylesheet" href="../css/style.css">
   <title>Open Fridge</title>
 </head>
 
-<body class="flex-container">
-  <nav class="">
-    <h1>Open Fridge</h1>
+<body class="grid-x">
+  <nav class="large-2 medium-3 small-4">
+    <img class="align-middle" src="../../assets/images/open_fridge.PNG" style="width: 100%;">
     <p>Good Meals, Good Life</p>
     <hr>
-    <div class="row">
-      <div class="medium-4 column">
+    <div class="grid-y">
+      <div class="medium-12">
         <ul class="menu vertical">
-          <h3 class="">Menu</h3>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Discover Recipes</a></li>
-          <li><a href="#">Random</a></li>
+          <h4 class="">Menu</h4>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../html/recipes.html">Discover Recipes</a></li>
         </ul>
       </div>
     </div>
     <hr>
-    <div class="medium-4 column">
-      <ul class="menu vertical">
-        <h3 class="">Quick Recipes</h3>
-        <li><a href="#">Chicken Dish</a></li>
-        <li><a href="#">Tomato Soup</a></li>
-        <li><a href="#">Random</a></li>
-      </ul>
+    <div class="medium-12">
+      <form class="menu vertical">
+        <h4 class="">Recent Recipes</h4>
+        <ul id="recipes-container" class="menu vertical">
+          <li><a href="#">Chicken Dish</a></li>
+          <li><a href="#">Tomato Soup</a></li>
+          <li><a href="#">Random</a></li>
+        </ul>
+      </form>
     </div>
   </nav>
 
-  <main class="grid-x grid-padding-x" style="margin-top: 100px; width: 3000px;">
-    <div class="cell small-1"></div>
-      <div class="cell small-4 flex-container flex-dir-column">
-        <!-- Recipes box -->
-          <div class="callout flex-child-auto" style="text-align: center;">
-            <h4>Recipes</h4>
-            <img src="" alt="Replace me with photo of food">
-            <div style="text-align: left;">
-                <p>Catagory</p>
-                <h4>Dish name</h4>
-            </div>
-          </div>
+  <main class="large-10 medium-9 small-8 column">
+    <form id="search-form">
+      <div class="grid-x">
+        <label class="medium-7 fa-solid fa-magnifying-glass fa-lg text-right" for="input-search"></label>
+        <input id="input-search3" class="medium-5" type='text' autofocus="true" placeholder="Search for Recipes...">
+        <button type="submit" class="btn"></button>
       </div>
+    </form>
+
+    <div class="grid-x grid-padding-x align-top align-justify">
+      <!-- Recipes box -->
+      <section class="large-7">
+        <div id="detail-image"></div>
+          <h3>Placeholder IMG</h3>
+        <div id="detail-title">
+          <h5>Category</h5>
+          <h4>Dish Name</h4>
+        </div>
+        <div id="detail-subtitle" class="grid-x">
+          <span class="small-4">Time</span>
+          <span class="small-4">People</span>
+          <span class="small-4">Calorie</span>
+        </div>
+
+        <div id="ingredients-list"></div>
+          <!-- append arrow marker + ingredients-->
+          <h4>Ingredients:</h4>
+          <ul>
+            <li>Placeholder 1</li>
+            <li>Placeholder 2</li>
+            <li>Placeholder 3</li>
+            <li>Placeholder 4</li>
+          </ul>
+        <div id="instructions-list"></div>
+          <!-- append number + instructions -->
+          <h4>Instructions:</h4>
+          <ul>
+            <li>Placeholder 1</li>
+            <li>Placeholder 2</li>
+            <li>Placeholder 3</li>
+            <li>Placeholder 4</li>
+          </ul>
+      </section>
+
       <!-- Nutrition value box -->
-      <div class="cell small-1"></div>
-      <div class="callout cell small-4 align-self-top">
-          <h4>Nutrition Values</h4>
-          <li>Fats</li>
-          <div class="progress" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuetext="25 percent" aria-valuemax="100">
+      <section class="large-5">
+        <div class="cell small-1"></div>
+          <div class="callout cell small-4 align-self-top">
+            <h4>Nutrition Values</h4>
+            <li>Fats</li>
+            <div class="progress" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuetext="25 percent" aria-valuemax="100">
+              <span class="progress-meter" style="width: 25%">
+                <span class="progress-meter-text">25%</span>
+              </span>
+            </div>
+            <li>Carbs</li>
+            <div class="progress" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuetext="25 percent" aria-valuemax="100">
             <span class="progress-meter" style="width: 25%">
               <span class="progress-meter-text">25%</span>
             </span>
           </div>
-          <li>Carbs</li>
-          <div class="progress" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuetext="25 percent" aria-valuemax="100">
-            <span class="progress-meter" style="width: 25%">
-              <span class="progress-meter-text">25%</span>
-            </span>
-          </div>
-      </div>
+        </div>
+      </section>
+    </div>
   </main>
 
   <footer>
@@ -86,7 +123,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.3/dist/js/foundation.min.js" crossorigin="anonymous">
   </script>
-  <script src="../js/script.js"></script>
+  <script src="../js/details.js"></script>
 </body>
 
 </html>
