@@ -5,36 +5,38 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.3/dist/css/foundation.min.css"
     crossorigin="anonymous">
-  <link rel="stylesheet" href="/assets/css/recipeStyle.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
   <title>Open Fridge</title>
 </head>
 
+
 <body class="grid-x">
   <nav class="large-2 medium-3 small-4">
-    <img class="align-middle" src="/assets/images/open_fridge.PNG" style="width: 100%;">
+    <img class="align-middle" src="assets/images/open_fridge.PNG" style="width: 100%;">
     <p>Good Meals, Good Life</p>
     <hr>
-    <div class="row">
-      <div class="medium-12 columns">
+    <div class="grid-y">
+      <div class="medium-12">
         <ul class="menu vertical">
           <h4 class="">Menu</h4>
-          <li><a href="/index.html">Home</a></li>
-          <li><a href="./recipes.html">Discover Recipes</a></li>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./assets/html/recipes.html">Discover Recipes</a></li>
         </ul>
       </div>
     </div>
     <hr>
-    <div class="medium-12 columns">
-      <ul class="menu vertical">
-        <h4 class="">Quick Recipes</h4>
-        <li><a href="#">Chicken Dish</a></li>
-        <li><a href="#">Tomato Soup</a></li>
-        <li><a href="#">Random</a></li>
-      </ul>
+    <div class="medium-12">
+      <form class="menu vertical">
+        <h4 class="">Recent Recipes</h4>
+        <ul id="recipes-container" class="menu vertical"></ul>
+
+      </form>
     </div>
   </nav>
 
