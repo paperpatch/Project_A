@@ -180,6 +180,10 @@ $("#recipes-container3").on("click", "li", function () {
 
 // Load Recent Recipe List Local Storage
 var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
+
+// clear old data
+$("#recipes-container3").empty();
+
 for (let i=0; i < recentRecipeStorage.length; i++) {
   console.log(recentRecipeStorage.length);
   let storageName = recentRecipeStorage[i];

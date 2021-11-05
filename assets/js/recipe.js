@@ -107,10 +107,13 @@ var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) 
 // clear old data
 $("#recipes-container2").empty();
 
-for (let i=1; i < recentRecipeStorage.length; i++) {
+for (let i=0; i < recentRecipeStorage.length; i++) {
   console.log(recentRecipeStorage.length);
-  let storageName = recentRecipeStorage[0];
-  let storageID = recentRecipeStorage[1]; 
+  let storageName = recentRecipeStorage[i];
+  console.log(storageName);
+  let storageID = recentRecipeStorage[i+1];
+  console.log(storageID);
+  i++;
   appendRow(storageName, storageID);
 }
 
