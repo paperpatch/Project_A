@@ -1,4 +1,6 @@
 var apiKey = "3a44b6d72cmsh2c9491cf44c4730p152adajsn7b494b9925d6";
+var searchForm3 = document.querySelector("#search-form3");
+var searchInput3 = document.querySelector("#input-search3");
 
 /* ---------------------- RECIPE SECTION ---------------------- */
 
@@ -147,7 +149,6 @@ var appendRow = function(foodName, foodID) {
   $("#recipes-container3").append(li);
 }
 
-
 /* ---------------------- UTILITIES SECTION ---------------------- */
 
 // Search Function
@@ -156,7 +157,7 @@ var formSubmitHandler = function (event) {
   event.preventDefault();
 
   // get value from input element
-  let searchFood = searchInput.value;
+  let searchFood = searchInput3.value;
   console.log(searchFood);
 
   // clear search input and old data
@@ -169,27 +170,25 @@ var formSubmitHandler = function (event) {
   window.location.assign('./assets/html/recipes.html')
 }
 
+// Recent Search List Function
+$("#recipes-container3").on("click", "li", function () {
+  let searchValue = $(this).attr("id");
+  console.log(searchValue);
+  foodDetail(searchValue);
+})
+
+/* ---------------------- LOAD SECTION ---------------------- */
+
 // Load Recent Recipe List Local Storage
 var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
 for (let i=0; i < recentRecipeStorage.length; i++) {
   appendRow(recentRecipeStorage[i]);
 }
 
-// Recent Search List Function
-
-$("#recipes-container3").on("click", "li", function () {
-  // clear old data
-  // window.localStorage.removeItem("recentRecipe")
-  // set localStorage for third html page
-  let searchValue = $(this).attr("id");
-  console.log(searchValue);
-  foodDetail(searchValue);
-  // window.localStorage.setItem("recentRecipe", JSON.stringify(searchList));
-  // redirect to page
-  // window.location.assign('./assets/html/detail.html')
-})
+// Event Listener Section
+searchForm3.addEventListener("submit", formSubmitHandler);
 
 // Load Searched Recipe
-// var foodID = JSON.parse(window.localStorage.getItem("searchRecipe")) || [];
-var foodID = "4524"; // Need to pull this data from detailStorage.
+// var foodObject = JSON.parse(window.localStorage.getItem("searchRecipe")) || [];
+var foodID = "2858"; // Need to pull this data from detailStorage.
 foodDetail(foodID);

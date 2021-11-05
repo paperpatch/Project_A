@@ -1,8 +1,10 @@
 var apiKey = "3a44b6d72cmsh2c9491cf44c4730p152adajsn7b494b9925d6";
-var recipeGrid = document.querySelector(".recipeGrid")
+var sizeList = 20; // input how many results you want
+var searchForm2 = document.querySelector("#search-form2");
+var searchInput2 = document.querySelector("#input-search2");
 
-var foodRecipeFilter = function () {
-  fetch("https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes", {
+var foodRecipeFilter = function (searchValue) {
+  fetch("https://tasty.p.rapidapi.com/recipes/list?from=0&size=" + sizeList + "&q=" + searchValue, {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "tasty.p.rapidapi.com",
@@ -10,13 +12,10 @@ var foodRecipeFilter = function () {
     }
   })
   .then(response => {
-    console.log(response);
     if (response.ok) {
       response.json().then(function (data) {
-        console.log(data);
 
-        genRecipeCard();
-        // add recipe filter function using `for loop`[i] and appending it to the list. Max a max limit?
+        getRecipeCard(data);
       })
     } else {
       // need to change this alert to modal
@@ -28,36 +27,99 @@ var foodRecipeFilter = function () {
   });
 }
 
-//  <div class="card small-3">
-  {/* <div class="card-section">
-    <img src="http://placehold.it/300x200">
-  </div>
-  <div class="card-section">
-    <h5>Dish Name</h5>
-    <div class="grid-x">
-      <i class="small-1 fa-solid fa-clock"></i>
-      <p class="small-11">1 hours</p>
-      <p>? ingredients</p>
-    </div>
-  </div>
-</div>  */}
-
-var genRecipeCard = function(data) {
+var getRecipeCard = function(data) {
   console.log(data);
 
-  var parentCard = document.createElement("div");
-  parentCard.setAttribute("class", "card small-3")
-  var cardSection1 = document.createElement("div");
-  cardSection1.setAttribute("class", "card-section")
-  var cardSectionImg = document.createElement("img");
-  cardSectionImg.setAttribute("src", "http://placehold.it/300x200")
-  
-  // insert rest here
-  
-  cardSection1.appendChild(cardSectionImg)
-  parentCard.appendChild(cardSection1)
-  recipeGrid.appendChild(parentCard)
+  // empty previous data
+  $("#recipeGridTitle").empty();
+  $("#recipeGrid").empty();
+
+  // make title for grid. Value taken from searched name from bottom of page.
+  // $("#recipeGridTitle").text("Related Recipes: " + searchValue.split("%20").join(" "));}
+
+  for (let i=0; i < data.results.length; i++) {
+    // get variables
+    let foodName = data.results[i].name;
+    console.log()
+    let foodImg = data.results[i].thumbnail_url;
+    let foodID = data.results[i].id
+
+    // make title for grid. Value taken from searched name from bottom of page.
+    $("#recipeGridTitle").text("Related Recipes: " + foodName)
+
+    // create card for each [i]
+    let discoverCard = $("<div>").addClass("card small-3").attr("id", foodID);
+    let discoverSection = $("<div>").addClass("card-section");
+    let discoverImg = $("<img>").attr("src", foodImg).addClass("trending-img");
+    let discoverSection2 = $("<div>").addClass("card-section");
+    let discoverName = $("<h5>").text(foodName);
+
+    // append cards
+    $("#recipeGrid").append(discoverCard);
+    discoverCard.append(discoverSection, discoverSection2);
+    discoverSection.append(discoverImg);
+    discoverSection2.append(discoverName);
+  }
 }
 
-var recipeStorage = JSON.parse(window.localStorage.getItem("searchRecipe")) || [];
-// foodRecipeSearch(recipeStorage);
+/* ---------------------- APPEND RECIPES LIST SECTION ---------------------- */
+
+// Append Recipes List Function
+
+var getRecipeList = function (foodName, foodID) {
+  // Add recipes to list, don't let it repeat. If recentRecipe can be found. 1 for yes. -1 for no.
+  if (recentRecipeStorage.indexOf(foodName) === -1) {
+    recentRecipeStorage.unshift(foodName, foodID);
+    window.localStorage.setItem("recipeList", JSON.stringify(recentRecipeStorage));
+
+    appendRow(foodName, foodID);
+  }
+};
+
+// Append Recipe List Function
+
+var appendRow = function(foodName, foodID) {
+  let li = $("<li>").attr("id", foodID).text(foodName);
+  $("#recipes-container2").append(li);
+}
+
+/* ---------------------- UTILITIES SECTION ---------------------- */
+
+// Search Function
+
+var formSubmitHandler = function (event) {
+  event.preventDefault();
+
+  // get value from input element
+  let searchFood = searchInput2.value;
+  searchFood.trim();
+
+  // empty old data
+  $("#input-search2").empty();
+
+  let searchFoodReplaceSpace = searchFood.split(" ").join("%20");
+  foodRecipeFilter(searchFoodReplaceSpace);
+}
+
+$("#recipes-container2").on("click", "li", function () {
+  // clear old data
+  window.localStorage.removeItem("recentRecipe")
+  // set localStorage for third html page
+  let searchList = $(this).attr("id");
+  window.localStorage.setItem("recentRecipe", JSON.stringify(searchList));
+  // redirect to page
+  window.location.assign('../html/detail.html')
+})
+
+// Event Listener Section
+searchForm2.addEventListener("submit", formSubmitHandler);
+
+// Load Recent Recipe List Local Storage
+var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
+for (let i=0; i < recentRecipeStorage.length; i++) {
+  appendRow(recentRecipeStorage[i]);
+}
+
+// Load Searched Recipe
+var recipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
+foodRecipeFilter(recipeStorage);
