@@ -81,6 +81,8 @@ var getTrendingData = function(data) {
   }
 }
 
+/* ---------------------- UTILITIES SECTION ---------------------- */
+
 // Appended Recent Search List for Details HTML Page
 $("#recipes-container").on("click", "li", function () {
   // clear old data
@@ -91,6 +93,21 @@ $("#recipes-container").on("click", "li", function () {
   // redirect to page
   window.location.assign('./assets/html/detail.html')
 })
+
+// Append Recipe List Function
+
+var appendRow = function(foodName, foodID) {
+  let li = $("<li>").attr("id", foodID).text(foodName);
+  $("#recipes-container").append(li);
+}
+
+/* ---------------------- LOAD SECTION ---------------------- */
+
+// Load Recent Recipe List Local Storage
+var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
+for (let i=0; i < recentRecipeStorage.length; i++) {
+  appendRow(recentRecipeStorage[i]);
+}
 
 // Event Listener Section
 searchForm.addEventListener("submit", formSubmitHandler);

@@ -173,7 +173,6 @@ var formSubmitHandler = function (event) {
 // Recent Search List Function
 $("#recipes-container3").on("click", "li", function () {
   let searchValue = $(this).attr("id");
-  console.log(searchValue);
   foodDetail(searchValue);
 })
 

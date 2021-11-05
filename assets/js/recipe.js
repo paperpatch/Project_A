@@ -111,14 +111,24 @@ $("#recipes-container2").on("click", "li", function () {
   window.location.assign('../html/detail.html')
 })
 
-// Event Listener Section
-searchForm2.addEventListener("submit", formSubmitHandler);
+// Append Recipe List Function
+
+var appendRow = function(foodName, foodID) {
+  let li = $("<li>").attr("id", foodID).text(foodName);
+  $("#recipes-container2").append(li);
+}
+
+/* ---------------------- LOAD SECTION ---------------------- */
+
 
 // Load Recent Recipe List Local Storage
 var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
 for (let i=0; i < recentRecipeStorage.length; i++) {
   appendRow(recentRecipeStorage[i]);
 }
+
+// Event Listener Section
+searchForm2.addEventListener("submit", formSubmitHandler);
 
 // Load Searched Recipe
 var recipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
