@@ -178,18 +178,12 @@ for (let i=0; i < recentRecipeStorage.length; i++) {
 // Recent Search List Function
 
 $("#recipes-container3").on("click", "li", function () {
-  // clear old data
-  // window.localStorage.removeItem("recentRecipe")
-  // set localStorage for third html page
   let searchValue = $(this).attr("id");
   console.log(searchValue);
   foodDetail(searchValue);
-  // window.localStorage.setItem("recentRecipe", JSON.stringify(searchList));
-  // redirect to page
-  // window.location.assign('./assets/html/detail.html')
 })
 
 // Load Searched Recipe
-// var foodID = JSON.parse(window.localStorage.getItem("searchRecipe")) || [];
+// var foodObject = JSON.parse(window.localStorage.getItem("searchRecipe")) || [];
 var foodID = "4524"; // Need to pull this data from detailStorage.
 foodDetail(foodID);

@@ -86,7 +86,7 @@ $("#recipes-container").on("click", "li", function () {
   // clear old data
   window.localStorage.removeItem("recentRecipe")
   // set localStorage for third html page
-  let searchList = $(this).text();
+  let searchList = $(this).attr("id");
   window.localStorage.setItem("recentRecipe", JSON.stringify(searchList));
   // redirect to page
   window.location.assign('./assets/html/detail.html')
