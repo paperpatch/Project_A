@@ -62,27 +62,6 @@ var getRecipeCard = function(data) {
   }
 }
 
-/* ---------------------- APPEND RECIPES LIST SECTION ---------------------- */
-
-// Append Recipes List Function
-
-var getRecipeList = function (foodName, foodID) {
-  // Add recipes to list, don't let it repeat. If recentRecipe can be found. 1 for yes. -1 for no.
-  if (recentRecipeStorage.indexOf(foodName) === -1) {
-    recentRecipeStorage.unshift(foodName, foodID);
-    window.localStorage.setItem("recipeList", JSON.stringify(recentRecipeStorage));
-
-    appendRow(foodName, foodID);
-  }
-};
-
-// Append Recipe List Function
-
-var appendRow = function(foodName, foodID) {
-  let li = $("<li>").attr("id", foodID).text(foodName);
-  $("#recipes-container2").append(li);
-}
-
 /* ---------------------- UTILITIES SECTION ---------------------- */
 
 // Search Function
@@ -101,6 +80,7 @@ var formSubmitHandler = function (event) {
   foodRecipeFilter(searchFoodReplaceSpace);
 }
 
+// Appended Recent Search List for Details HTML Page
 $("#recipes-container2").on("click", "li", function () {
   // clear old data
   window.localStorage.removeItem("recentRecipe")
@@ -111,15 +91,35 @@ $("#recipes-container2").on("click", "li", function () {
   window.location.assign('../html/detail.html')
 })
 
-// Event Listener Section
-searchForm2.addEventListener("submit", formSubmitHandler);
+// Append Recipe List Function
+
+var appendRow = function(foodName, foodID) {
+  let li = $("<li>").attr("id", foodID).text(foodName);
+  $("#recipes-container2").append(li);
+}
+
+/* ---------------------- LOAD SECTION ---------------------- */
+
 
 // Load Recent Recipe List Local Storage
 var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
+
+// clear old data
+$("#recipes-container2").empty();
+
 for (let i=0; i < recentRecipeStorage.length; i++) {
-  appendRow(recentRecipeStorage[i]);
+  console.log(recentRecipeStorage.length);
+  let storageName = recentRecipeStorage[i];
+  console.log(storageName);
+  let storageID = recentRecipeStorage[i+1];
+  console.log(storageID);
+  i++;
+  appendRow(storageName, storageID);
 }
 
+// Event Listener Section
+searchForm2.addEventListener("submit", formSubmitHandler);
+
 // Load Searched Recipe
-var recipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
+var recipeStorage = JSON.parse(window.localStorage.getItem("searchList")) || [];
 foodRecipeFilter(recipeStorage);

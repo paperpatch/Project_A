@@ -2,25 +2,6 @@ var apiKey = "3a44b6d72cmsh2c9491cf44c4730p152adajsn7b494b9925d6";
 var searchForm = document.querySelector("#search-form");
 var searchInput = document.querySelector("#input-search");
 
-// Search Section
-
-var formSubmitHandler = function (event) {
-  event.preventDefault();
-
-  // get value from input element
-  let searchFood = searchInput.value;
-  console.log(searchFood);
-
-  // clear search input and old data
-  $("#input-search").val("");
-  window.localStorage.removeItem("searchRecipe")
-
-  // set to localStorage for Discover Recipes HTML Page
-  window.localStorage.setItem("searchRecipe", JSON.stringify(searchFood));
-  // redirect to page
-  window.location.assign('./assets/html/recipes.html')
-}
-
 // Trending Recipes Section
 
 var trendingRecipe = function() {
@@ -81,6 +62,27 @@ var getTrendingData = function(data) {
   }
 }
 
+/* ---------------------- UTILITIES SECTION ---------------------- */
+
+// Search Section
+
+var formSubmitHandler = function (event) {
+  event.preventDefault();
+
+  // get value from input element
+  let searchFood = searchInput.value;
+  console.log(searchFood);
+
+  // clear search input and old data
+  $("#input-search").val("");
+  window.localStorage.removeItem("searchRecipe")
+
+  // set to localStorage for Discover Recipes HTML Page
+  window.localStorage.setItem("searchRecipe", JSON.stringify(searchFood));
+  // redirect to page
+  window.location.assign('./assets/html/recipes.html')
+}
+
 // Appended Recent Search List for Details HTML Page
 $("#recipes-container").on("click", "li", function () {
   // clear old data
@@ -91,6 +93,32 @@ $("#recipes-container").on("click", "li", function () {
   // redirect to page
   window.location.assign('./assets/html/detail.html')
 })
+
+// Append Recipe List Function
+
+var appendRow = function(foodName, foodID) {
+  let li = $("<li>").attr("id", foodID).text(foodName);
+  console.log(li);
+  $("#recipes-container").append(li);
+}
+
+/* ---------------------- LOAD SECTION ---------------------- */
+
+// Load Recent Recipe List Local Storage
+var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
+
+// clear old data
+$("#recipes-container").empty();
+
+for (let i=0; i < recentRecipeStorage.length; i++) {
+  console.log(recentRecipeStorage.length);
+  let storageName = recentRecipeStorage[i];
+  console.log(storageName);
+  let storageID = recentRecipeStorage[i+1];
+  console.log(storageID);
+  i++;
+  appendRow(storageName, storageID);
+}
 
 // Event Listener Section
 searchForm.addEventListener("submit", formSubmitHandler);
