@@ -28,8 +28,6 @@ var foodRecipeFilter = function (searchValue) {
 }
 
 var getRecipeCard = function(data) {
-  console.log(data);
-
   // empty previous data
   $("#recipeGridTitle").empty();
   $("#recipeGrid").empty();
@@ -40,7 +38,6 @@ var getRecipeCard = function(data) {
   for (let i=0; i < data.results.length; i++) {
     // get variables
     let foodName = data.results[i].name;
-    console.log()
     let foodImg = data.results[i].thumbnail_url;
     let foodID = data.results[i].id
 
@@ -70,8 +67,7 @@ var formSubmitHandler = function (event) {
   event.preventDefault();
 
   // get value from input element
-  let searchFood = searchInput2.value;
-  searchFood.trim();
+  var searchFood = searchInput2.value.trim();
 
   // empty old data
   $("#input-search2").empty();
@@ -108,11 +104,8 @@ var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) 
 $("#recipes-container2").empty();
 
 for (let i=0; i < recentRecipeStorage.length; i++) {
-  console.log(recentRecipeStorage.length);
   let storageName = recentRecipeStorage[i];
-  console.log(storageName);
   let storageID = recentRecipeStorage[i+1];
-  console.log(storageID);
   i++;
   appendRow(storageName, storageID);
 }

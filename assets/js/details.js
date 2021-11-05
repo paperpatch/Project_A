@@ -28,8 +28,6 @@ var foodDetail = function(foodID) {
 }
 
 var getRecipeDetail = function(data) {
-  console.log(data);
-
   // clear previous data
   $("#instruction-list").empty();
 
@@ -101,7 +99,6 @@ var fetchNutrition = function(foodName) {
 }
 
 var getNutritionDetail = function(data) {
-  // console.log(data);
   // clear previous data
   $("#nutrition-list").empty();
 
@@ -157,8 +154,7 @@ var formSubmitHandler = function (event) {
   event.preventDefault();
 
   // get value from input element
-  var searchFood = searchInput3.value;
-  console.log(searchFood);
+  var searchFood = searchInput3.value.trim();
 
   // clear search input and old data
   $("#input-search3").val("");
@@ -166,7 +162,6 @@ var formSubmitHandler = function (event) {
 
   // set to localStorage for Discover Recipes HTML Page
   window.localStorage.setItem("searchRecipe", JSON.stringify(searchFood));
-  // redirect to page
   window.location.assign('./assets/html/recipes.html')
 }
 
