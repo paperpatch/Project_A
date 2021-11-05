@@ -162,7 +162,7 @@ var formSubmitHandler = function (event) {
 
   // set to localStorage for Discover Recipes HTML Page
   window.localStorage.setItem("searchRecipe", JSON.stringify(searchFood));
-  window.location.assign('./assets/html/recipes.html')
+  window.location.assign('./recipes.html')
 }
 
 // Recent Search List Function

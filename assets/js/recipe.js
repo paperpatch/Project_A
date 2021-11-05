@@ -32,9 +32,6 @@ var getRecipeCard = function(data) {
   $("#recipeGridTitle").empty();
   $("#recipeGrid").empty();
 
-  // make title for grid. Value taken from searched name from bottom of page.
-  // $("#recipeGridTitle").text("Related Recipes: " + searchValue.split("%20").join(" "));}
-
   for (let i=0; i < data.results.length; i++) {
     // get variables
     let foodName = data.results[i].name;
@@ -43,6 +40,7 @@ var getRecipeCard = function(data) {
 
     // make title for grid. Value taken from searched name from bottom of page.
     $("#recipeGridTitle").text("Related Recipes: " + foodName)
+    // $("#recipeGridTitle").text("Related Recipes: " + searchValue.split("%20").join(" "));}
 
     // create card for each [i]
     let discoverCard = $("<div>").addClass("card small-3").attr("id", foodID);
@@ -80,15 +78,14 @@ var formSubmitHandler = function (event) {
 $("#recipes-container2").on("click", "li", function () {
   // clear old data
   window.localStorage.removeItem("recentRecipe")
-  // set localStorage for third html page
+
+  // set localStorage for detail html page
   let searchList = $(this).attr("id");
   window.localStorage.setItem("recentRecipe", JSON.stringify(searchList));
-  // redirect to page
   window.location.assign('../html/detail.html')
 })
 
 // Append Recipe List Function
-
 var appendRow = function(foodName, foodID) {
   let li = $("<li>").attr("id", foodID).text(foodName);
   $("#recipes-container2").append(li);
@@ -114,5 +111,5 @@ for (let i=0; i < recentRecipeStorage.length; i++) {
 searchForm2.addEventListener("submit", formSubmitHandler);
 
 // Load Searched Recipe
-var recipeStorage = JSON.parse(window.localStorage.getItem("searchList")) || [];
+var recipeStorage = JSON.parse(window.localStorage.getItem("searchRecipe")) || [];
 foodRecipeFilter(recipeStorage);

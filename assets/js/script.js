@@ -79,15 +79,14 @@ var formSubmitHandler = function (event) {
 $("#recipes-container").on("click", "li", function () {
   // clear old data
   window.localStorage.removeItem("recentRecipe")
-  // set localStorage for third html page
+
+  // set localStorage for detail html page
   let searchList = $(this).attr("id");
   window.localStorage.setItem("recentRecipe", JSON.stringify(searchList));
-  // redirect to page
   window.location.assign('./assets/html/detail.html')
 })
 
 // Append Recipe List Function
-
 var appendRow = function(foodName, foodID) {
   let li = $("<li>").attr("id", foodID).text(foodName);
   $("#recipes-container").append(li);
