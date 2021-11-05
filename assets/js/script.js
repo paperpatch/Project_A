@@ -75,6 +75,18 @@ var formSubmitHandler = function (event) {
   window.location.assign('./assets/html/recipes.html')
 }
 
+// Filter Category Section
+
+$(".categories").on("click", "a", function () {
+  // clear old data
+  window.localStorage.removeItem("searchRecipe")
+
+  // set localStorage for detail html page
+  let searchButton = $(this).text();
+  window.localStorage.setItem("searchRecipe", JSON.stringify(searchButton));
+  window.location.assign('./assets/html/recipes.html')
+})
+
 // Appended Recent Search List for Details HTML Page
 $("#recipes-container").on("click", "li", function () {
   // clear old data

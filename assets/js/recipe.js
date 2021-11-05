@@ -74,8 +74,21 @@ var formSubmitHandler = function (event) {
   foodRecipeFilter(searchFoodReplaceSpace);
 }
 
+// Filter Category Function
+
+$(".categories").on("click", "a", function () {
+
+  // set localStorage for detail html page
+  let searchButton = $(this).text();
+  // make title for grid.
+  $("#recipeGridTitle").empty();
+  $("#recipeGridTitle").text("Related Recipes: " + searchButton)
+
+  foodRecipeFilter(searchButton);
+})
+
 // Appended Recent Search List for Details HTML Page
-$("#recipes-container2").on("click", "li", function () {
+$("#recipes-container2").on("click", "img", function () {
   // clear old data
   window.localStorage.removeItem("recentRecipe")
 
