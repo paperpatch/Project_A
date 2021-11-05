@@ -30,17 +30,22 @@ var foodRecipeFilter = function (searchValue) {
 var getRecipeCard = function(data) {
   console.log(data);
 
+  // empty previous data
+  $("#recipeGridTitle").empty();
+  $("#recipeGrid").empty();
+
   // make title for grid. Value taken from searched name from bottom of page.
-  $("#recipeGridTitle").text("Related Recipes: " + storageTrim);
+  // $("#recipeGridTitle").text("Related Recipes: " + searchValue.split("%20").join(" "));}
 
   for (let i=0; i < data.results.length; i++) {
     // get variables
     let foodName = data.results[i].name;
+    console.log()
     let foodImg = data.results[i].thumbnail_url;
-    for (let j=0; j< data.results[j].credits.length; j++) {
-      var foodCredit = data.results[i].credits[j].name;
-    }
     let foodID = data.results[i].id
+
+    // make title for grid. Value taken from searched name from bottom of page.
+    $("#recipeGridTitle").text("Related Recipes: " + foodName)
 
     // create card for each [i]
     let discoverCard = $("<div>").addClass("card small-3").attr("id", foodID);
@@ -65,7 +70,7 @@ var getRecipeList = function (foodName, foodID) {
   // Add recipes to list, don't let it repeat. If recentRecipe can be found. 1 for yes. -1 for no.
   if (recentRecipeStorage.indexOf(foodName) === -1) {
     recentRecipeStorage.unshift(foodName, foodID);
-    window.localStorage.setItem("recipeRecipe", JSON.stringify(recentRecipeStorage));
+    window.localStorage.setItem("recipeList", JSON.stringify(recentRecipeStorage));
 
     appendRow(foodName, foodID);
   }
@@ -87,12 +92,13 @@ var formSubmitHandler = function (event) {
 
   // get value from input element
   let searchFood = searchInput2.value;
+  searchFood.trim();
 
-  // clear search input and old data
-  $("#input-search2").val("");
+  // empty old data
+  $("#input-search2").empty();
 
   let searchFoodReplaceSpace = searchFood.split(" ").join("%20");
-  foodRecipeFilter(searchFoodReplaceSpace)
+  foodRecipeFilter(searchFoodReplaceSpace);
 }
 
 $("#recipes-container2").on("click", "li", function () {
@@ -105,6 +111,9 @@ $("#recipes-container2").on("click", "li", function () {
   window.location.assign('../html/detail.html')
 })
 
+// Event Listener Section
+searchForm2.addEventListener("submit", formSubmitHandler);
+
 // Load Recent Recipe List Local Storage
 var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
 for (let i=0; i < recentRecipeStorage.length; i++) {
@@ -113,19 +122,4 @@ for (let i=0; i < recentRecipeStorage.length; i++) {
 
 // Load Searched Recipe
 var recipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
-console.log(recipeStorage);
-if (recipeStorage != "") {
-  var storageTrim = JSON.stringify(recipeStorage).trim();
-  console.log(storageTrim);
-  let searchFromStorage = storageTrim.split(" ").join("%20");
-  console.log(searchFromStorage);
-  foodRecipeFilter(searchFromStorage);
-} else {
-  foodRecipeFilter("chicken")
-}
-
-// Event Listener Section
-searchForm2.addEventListener("submit", formSubmitHandler);
-
-// foodRecipeSearch(recipeStorage);
-foodRecipeFilter(searchFromStorage);
+foodRecipeFilter(recipeStorage);
