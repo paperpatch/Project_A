@@ -85,6 +85,17 @@ $("#recipes-container2").on("click", "li", function () {
   window.location.assign('../html/detail.html')
 })
 
+// Clickable Cards List for Details HTML Page
+$("#recipeGrid").on("click", "div", function () {
+  // clear old data
+  window.localStorage.removeItem("recentRecipe")
+
+  // set localStorage for detail html page
+  let searchList = $(this).attr("id");
+  window.localStorage.setItem("recentRecipe", JSON.stringify(searchList));
+  window.location.assign('../html/detail.html')
+})
+
 // Append Recipe List Function
 var appendRow = function(foodName, foodID) {
   let li = $("<li>").attr("id", foodID).text(foodName);
