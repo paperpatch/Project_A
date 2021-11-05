@@ -180,11 +180,8 @@ var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) 
 $("#recipes-container3").empty();
 
 for (let i=0; i < recentRecipeStorage.length; i++) {
-  console.log(recentRecipeStorage.length);
   let storageName = recentRecipeStorage[i];
-  console.log(storageName);
   let storageID = recentRecipeStorage[i+1];
-  console.log(storageID);
   i++;
   appendRow(storageName, storageID);
 }
@@ -193,8 +190,5 @@ for (let i=0; i < recentRecipeStorage.length; i++) {
 searchForm3.addEventListener("submit", formSubmitHandler);
 
 // Load Searched Recipe
-// var foodObject = JSON.parse(window.localStorage.getItem("searchRecipe")) || [];
-var foodID = "2858"; // Need to pull this data from detailStorage.
+var foodID = JSON.parse(window.localStorage.getItem("recentRecipe")) || [];
 foodDetail(foodID);
-
-// 7909, 2858
