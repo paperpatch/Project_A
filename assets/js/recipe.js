@@ -3,8 +3,8 @@ var sizeList = 20; // input how many results you want
 var searchForm2 = document.querySelector("#search-form2");
 var searchInput2 = document.querySelector("#input-search2");
 
-var foodRecipeFilter = function () {
-  fetch("https://tasty.p.rapidapi.com/recipes/list?from=0&size=" + sizeList + "&q=" + searchFromStorage, {
+var foodRecipeFilter = function (searchValue) {
+  fetch("https://tasty.p.rapidapi.com/recipes/list?from=0&size=" + sizeList + "&q=" + searchValue, {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "tasty.p.rapidapi.com",
@@ -87,16 +87,12 @@ var formSubmitHandler = function (event) {
 
   // get value from input element
   let searchFood = searchInput2.value;
-  console.log(searchFood);
 
   // clear search input and old data
   $("#input-search2").val("");
-  window.localStorage.removeItem("searchRecipe")
 
-  // set to localStorage for Discover Recipes HTML Page
-  window.localStorage.setItem("searchRecipe", JSON.stringify(searchFood));
-  // redirect to page
-  window.location.assign('../html/recipes.html')
+  let searchFoodReplaceSpace = searchFood.split(" ").join("%20");
+  foodRecipeFilter(searchFoodReplaceSpace)
 }
 
 $("#recipes-container2").on("click", "li", function () {
@@ -121,7 +117,7 @@ console.log(recipeStorage);
 if (recipeStorage != "") {
   var storageTrim = JSON.stringify(recipeStorage).trim();
   console.log(storageTrim);
-  let searchFromStorage = storageTrim.replace(/\s+/g,"%20");
+  let searchFromStorage = storageTrim.split(" ").join("%20");
   console.log(searchFromStorage);
   foodRecipeFilter(searchFromStorage);
 } else {
