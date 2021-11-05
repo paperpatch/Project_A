@@ -1,8 +1,7 @@
 var apiKey = "3a44b6d72cmsh2c9491cf44c4730p152adajsn7b494b9925d6";
-var recipeGrid = document.querySelector("#recipeGrid")
 
 var foodRecipeFilter = function () {
-  fetch("https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes", {
+  fetch("https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=" + searchFromStorage, {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "tasty.p.rapidapi.com",
@@ -10,13 +9,10 @@ var foodRecipeFilter = function () {
     }
   })
   .then(response => {
-    console.log(response);
     if (response.ok) {
       response.json().then(function (data) {
-        console.log(data);
 
-        genRecipeCard();
-        // add recipe filter function using `for loop`[i] and appending it to the list. Max a max limit?
+        getRecipeCard(data);
       })
     } else {
       // need to change this alert to modal
@@ -28,62 +24,35 @@ var foodRecipeFilter = function () {
   });
 }
 
-var foodRelatedRecipes = function() {
-  fetch("https://tasty.p.rapidapi.com/recipes/auto-complete?prefix=chicken%20soup", {
-    "method": "GET",
-    "headers": {
-      "x-rapidapi-host": "tasty.p.rapidapi.com",
-      "x-rapidapi-key": apiKey,
-    }
-  })
-  .then(response => {
-    console.log(response);
-    if (response.ok) {
-      response.json().then(function (data) {
-        console.log(data);
-
-        genRecipeCard();
-        // add recipe filter function using `for loop`[i] and appending it to the list. Max a max limit?
-      })
-    } else {
-      // need to change this alert to modal
-      alert("Error: " + response.statusText)
-    }
-  })
-  .catch(err => {
-    console.error(err);
-  });
-}
-
-//  <div class="card small-3">
-  {/* <div class="card-section">
-    <img src="http://placehold.it/300x200">
-  </div>
-  <div class="card-section">
-    <h5>Dish Name</h5>
-    <div class="grid-x">
-      <i class="small-1 fa-solid fa-clock"></i>
-      <p class="small-11">1 hours</p>
-      <p>? ingredients</p>
-    </div>
-  </div>
-</div>  */}
-
-var genRecipeCard = function(data) {
+var getRecipeCard = function(data) {
   console.log(data);
 
-  var parentCard = document.createElement("div");
-  parentCard.setAttribute("class", "card small-3")
-  var cardSection1 = document.createElement("div");
-  cardSection1.setAttribute("class", "card-section")
-  var cardSectionImg = document.createElement("img");
-  cardSectionImg.setAttribute("src", "http://placehold.it/300x200")
-  
-  // insert rest here
-  
-  cardSection1.appendChild(cardSectionImg)
-  parentCard.appendChild(cardSection1)
-  recipeGrid.appendChild(parentCard)
+  // make title for grid. Value taken from searched name from bottom of page.
+  $("#recipeGridTitle").text("Related Recipes: " + storageTrim);
+
+  for (let i=0; i < data.results.length; i++) {
+    // get variables
+    let foodName = data.results[i].name;
+    let foodImg = data.results[i].thumbnail_url;
+    for (let j=0; j< data.results[j].credits.length; j++) {
+      var foodCredit = data.results[i].credits[j].name;
+    }
+    let foodID = data.results[i].id
+
+    // create card for each [i]
+    let discoverCard = $("<div>").addClass("card small-3").attr("id", foodID);
+    let discoverSection = $("<div>").addClass("card-section");
+    let discoverImg = $("<img>").attr("src", foodImg).addClass("trending-img");
+    let discoverSection2 = $("<div>").addClass("card-section");
+    let discoverName = $("<h5>").text(foodName);
+    let discoverCredit = $("<p>").text("Made By: " + foodCredit);
+
+    // append cards
+    $("#recipeGrid").append(discoverCard);
+    discoverCard.append(discoverSection, discoverSection2);
+    discoverSection.append(discoverImg);
+    discoverSection2.append(discoverName, discoverCredit);
+  }
 }
 
 /* ---------------------- UTILITIES SECTION ---------------------- */
@@ -107,12 +76,6 @@ var formSubmitHandler = function (event) {
   window.location.assign('../html/recipes.html')
 }
 
-// Load Recent Recipe List Local Storage
-var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
-for (let i=0; i < recentRecipeStorage.length; i++) {
-  appendRow(recentRecipeStorage[i]);
-}
-
 $("#recipes-container2").on("click", "li", function () {
   // clear old data
   window.localStorage.removeItem("recentRecipe")
@@ -123,7 +86,16 @@ $("#recipes-container2").on("click", "li", function () {
   window.location.assign('../html/detail.html')
 })
 
-// Load Searched Recipe
+// Load Recent Recipe List Local Storage
+var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
+for (let i=0; i < recentRecipeStorage.length; i++) {
+  appendRow(recentRecipeStorage[i]);
+}
 
+// Load Searched Recipe
 var recipeStorage = JSON.parse(window.localStorage.getItem("searchRecipe")) || [];
+var storageTrim = recipeStorage.trim();
+let searchFromStorage = storageTrim.replace(/\s+/g,"%20");
 // foodRecipeSearch(recipeStorage);
+
+foodRecipeFilter(searchFromStorage);
