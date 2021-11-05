@@ -11,80 +11,70 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.3/dist/css/foundation.min.css"
     crossorigin="anonymous">
-  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
   <title>Open Fridge</title>
 </head>
 
 
 <body class="grid-x">
   <nav class="large-2 medium-3 small-4">
-    <img class="align-middle" src="assets/images/open_fridge.PNG" style="width: 100%;">
+    <img class="align-middle" src="../images/open_fridge.PNG" style="width: 100%;">
     <p>Good Meals, Good Life</p>
     <hr>
     <div class="grid-y">
       <div class="medium-12">
         <ul class="menu vertical">
-          <h4 class="">Menu</h4>
-          <li><a href="./index.html">Home</a></li>
-          <li><a href="./assets/html/recipes.html">Discover Recipes</a></li>
+          <h4>Menu</h4>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="./recipes.html">Discover Recipes</a></li>
         </ul>
       </div>
     </div>
     <hr>
     <div class="medium-12">
       <form class="menu vertical">
-        <h4 class="">Recent Recipes</h4>
-        <ul id="recipes-container" class="menu vertical"></ul>
+        <h4>Recent Recipes</h4>
+        <ul id="recipes-container2" class="menu vertical">
 
+        </ul>
       </form>
     </div>
   </nav>
 
   <main class="large-10 medium-9 small-8 column">
-    <form>
+    <form id="search-form" class="search-form">
       <div class="grid-x">
         <label class="medium-7 fa-solid fa-magnifying-glass fa-lg text-right" for="input-search"></label>
-        <input id="input-search" class="medium-5" type='text' placeholder="Search for Recipes">
+        <input id="input-search2" class="medium-5" type='text' autofocus="true" placeholder="Search for Recipes...">
+        <button type="submit" class="btn"></button>
       </div>
     </form>
-    <div class="grid-x grid-padding-x align-middle align-justify front-page">
-      <section class="large-1 medium-3 small-12"></section>
-      <section class="large-10 medium-6 small-12">
-        <div class="flex-child-auto">
-          <h2>Discover Recipes! - LINK HTML PAGE HERE</h2>
-          <br>
-        </div>
-      </section>
-      <section class="large-1 medium-3 small-12"></section>
-      
 
-      <!-- <section class="large-8 medium-7 small-12 text-center">
-        <img class="front-image" src="/assets/images/home_cooking.jpg">
-      </section> -->
-    </div>
-    <section class="callout centerCallouts">
-      <h4>Popular Categories - choices depends on what info our API has</h4>
-      <h5>Hover below on the filter button for options to choose from!</h5>
-      <div class="row">
-        <div class="columns medium-6">
-              <a class="button" href="#">Protein Diet</a>
-              <a class="button" href="#">Vegetarian</a>
-              <a class="button" href="#">Vegan</a>
-              <a class="button" href="#">Keto</a>
-              <a class="button" href="#">Chicken</a>
-            <a class="button" href="#">Salad</a>
-            <a class="button" href="#">Beverages</a>
-            <a class="button" href="#">Soups</a>
-            <a class="button" href="#">Beef</a>
-            </div>
-          </div>
+    <span>
+      <h2>Discover Recipes</h2>
+    </span>
+
+    <section class="callout">
+      <h4>Popular Categories</h4>
+      <div class="grid-x">
+        <div class="columns">
+          <a class="button" href="#">Protein Diet</a>
+          <a class="button" href="#">Vegetarian</a>
+          <a class="button" href="#">Vegan</a>
+          <a class="button" href="#">Keto</a>
+          <a class="button" href="#">Chicken</a>
+          <a class="button" href="#">Salad</a>
+          <a class="button" href="#">Beverages</a>
+          <a class="button" href="#">Soups</a>
+          <a class="button" href="#">Beef</a>
         </div>
       </div>
     </section>
-    <section class="callout centerCallouts">
-      <h4 class="availableRecipes">Available Recipes We Have</h4>
-      <div class="grid-x recipeGrid">
 
+    <section class="callout">
+      <h4 class="availableRecipes">Related Recipes</h4>
+      <div id="recipeGrid" class="grid-x">
+        <!-- Append cards here with ID -->
       </div>
     </section>
   </main>
@@ -103,7 +93,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.3/dist/js/foundation.min.js" crossorigin="anonymous">
   </script>
-  <script src="/assets/js/recipe.js"></script>
+  <script src="../js/recipe.js"></script>
 </body>
 
 </html>

@@ -1,8 +1,35 @@
 var apiKey = "3a44b6d72cmsh2c9491cf44c4730p152adajsn7b494b9925d6";
-var recipeGrid = document.querySelector(".recipeGrid")
+var recipeGrid = document.querySelector("#recipeGrid")
 
 var foodRecipeFilter = function () {
   fetch("https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes", {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "tasty.p.rapidapi.com",
+      "x-rapidapi-key": apiKey,
+    }
+  })
+  .then(response => {
+    console.log(response);
+    if (response.ok) {
+      response.json().then(function (data) {
+        console.log(data);
+
+        genRecipeCard();
+        // add recipe filter function using `for loop`[i] and appending it to the list. Max a max limit?
+      })
+    } else {
+      // need to change this alert to modal
+      alert("Error: " + response.statusText)
+    }
+  })
+  .catch(err => {
+    console.error(err);
+  });
+}
+
+var foodRelatedRecipes = function() {
+  fetch("https://tasty.p.rapidapi.com/recipes/auto-complete?prefix=chicken%20soup", {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "tasty.p.rapidapi.com",
