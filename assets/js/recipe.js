@@ -29,7 +29,6 @@ var foodRecipeFilter = function (searchValue) {
 
 var getRecipeCard = function(data) {
   // empty previous data
-  $("#recipeGridTitle").empty();
   $("#recipeGrid").empty();
 
   for (let i=0; i < data.results.length; i++) {
@@ -37,10 +36,6 @@ var getRecipeCard = function(data) {
     let foodName = data.results[i].name;
     let foodImg = data.results[i].thumbnail_url;
     let foodID = data.results[i].id
-
-    // make title for grid. Value taken from searched name from bottom of page.
-    $("#recipeGridTitle").text("Related Recipes: " + foodName)
-    // $("#recipeGridTitle").text("Related Recipes: " + searchValue.split("%20").join(" "));}
 
     // create card for each [i]
     let discoverCard = $("<div>").addClass("card small-3").attr("id", foodID);
@@ -69,7 +64,12 @@ var formSubmitHandler = function (event) {
 
   // empty old data
   $("#input-search2").empty();
+  $("#recipeGridTitle").empty();
 
+  // make title for grid.
+  $("#recipeGridTitle").text("Related Recipes: " + searchFood)
+
+  // need to replace 'spaces' with %20 for fetch request to work
   let searchFoodReplaceSpace = searchFood.split(" ").join("%20");
   foodRecipeFilter(searchFoodReplaceSpace);
 }
@@ -112,4 +112,11 @@ searchForm2.addEventListener("submit", formSubmitHandler);
 
 // Load Searched Recipe
 var recipeStorage = JSON.parse(window.localStorage.getItem("searchRecipe")) || [];
-foodRecipeFilter(recipeStorage);
+
+// make title for grid.
+$("#recipeGridTitle").empty();
+$("#recipeGridTitle").text("Related Recipes: " + recipeStorage)
+
+// need to replace 'spaces' with %20 for fetch request to work
+var recipeStorageReplaceSpace = recipeStorage.split(" ").join("%20");
+foodRecipeFilter(recipeStorageReplaceSpace);
