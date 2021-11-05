@@ -28,8 +28,6 @@ var foodDetail = function(foodID) {
 }
 
 var getRecipeDetail = function(data) {
-  console.log(data);
-
   // clear previous data
   $("#instruction-list").empty();
 
@@ -101,7 +99,6 @@ var fetchNutrition = function(foodName) {
 }
 
 var getNutritionDetail = function(data) {
-  // console.log(data);
   // clear previous data
   $("#nutrition-list").empty();
 
@@ -157,8 +154,7 @@ var formSubmitHandler = function (event) {
   event.preventDefault();
 
   // get value from input element
-  var searchFood = searchInput3.value;
-  console.log(searchFood);
+  var searchFood = searchInput3.value.trim();
 
   // clear search input and old data
   $("#input-search3").val("");
@@ -166,8 +162,7 @@ var formSubmitHandler = function (event) {
 
   // set to localStorage for Discover Recipes HTML Page
   window.localStorage.setItem("searchRecipe", JSON.stringify(searchFood));
-  // redirect to page
-  window.location.assign('./assets/html/recipes.html')
+  window.location.assign('./recipes.html')
 }
 
 // Recent Search List Function
@@ -185,11 +180,8 @@ var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) 
 $("#recipes-container3").empty();
 
 for (let i=0; i < recentRecipeStorage.length; i++) {
-  console.log(recentRecipeStorage.length);
   let storageName = recentRecipeStorage[i];
-  console.log(storageName);
   let storageID = recentRecipeStorage[i+1];
-  console.log(storageID);
   i++;
   appendRow(storageName, storageID);
 }
@@ -198,8 +190,5 @@ for (let i=0; i < recentRecipeStorage.length; i++) {
 searchForm3.addEventListener("submit", formSubmitHandler);
 
 // Load Searched Recipe
-// var foodObject = JSON.parse(window.localStorage.getItem("searchRecipe")) || [];
-var foodID = "2858"; // Need to pull this data from detailStorage.
+var foodID = JSON.parse(window.localStorage.getItem("recentRecipe")) || [];
 foodDetail(foodID);
-
-// 7909, 2858
