@@ -2,25 +2,6 @@ var apiKey = "3a44b6d72cmsh2c9491cf44c4730p152adajsn7b494b9925d6";
 var searchForm = document.querySelector("#search-form");
 var searchInput = document.querySelector("#input-search");
 
-// Search Section
-
-var formSubmitHandler = function (event) {
-  event.preventDefault();
-
-  // get value from input element
-  let searchFood = searchInput.value;
-  console.log(searchFood);
-
-  // clear search input and old data
-  $("#input-search").val("");
-  window.localStorage.removeItem("searchRecipe")
-
-  // set to localStorage for Discover Recipes HTML Page
-  window.localStorage.setItem("searchRecipe", JSON.stringify(searchFood));
-  // redirect to page
-  window.location.assign('./assets/html/recipes.html')
-}
-
 // Trending Recipes Section
 
 var trendingRecipe = function() {
@@ -83,6 +64,25 @@ var getTrendingData = function(data) {
 
 /* ---------------------- UTILITIES SECTION ---------------------- */
 
+// Search Section
+
+var formSubmitHandler = function (event) {
+  event.preventDefault();
+
+  // get value from input element
+  let searchFood = searchInput.value;
+  console.log(searchFood);
+
+  // clear search input and old data
+  $("#input-search").val("");
+  window.localStorage.removeItem("searchRecipe")
+
+  // set to localStorage for Discover Recipes HTML Page
+  window.localStorage.setItem("searchRecipe", JSON.stringify(searchFood));
+  // redirect to page
+  window.location.assign('./assets/html/recipes.html')
+}
+
 // Appended Recent Search List for Details HTML Page
 $("#recipes-container").on("click", "li", function () {
   // clear old data
@@ -98,6 +98,7 @@ $("#recipes-container").on("click", "li", function () {
 
 var appendRow = function(foodName, foodID) {
   let li = $("<li>").attr("id", foodID).text(foodName);
+  console.log(li);
   $("#recipes-container").append(li);
 }
 

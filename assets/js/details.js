@@ -136,7 +136,7 @@ var getRecipeList = function (foodName, foodID) {
   // Add recipes to list, don't let it repeat. If recentRecipe can be found. 1 for yes. -1 for no.
   if (recentRecipeStorage.indexOf(foodName) === -1) {
     recentRecipeStorage.unshift(foodName, foodID);
-    window.localStorage.setItem("recipeRecipe", JSON.stringify(recentRecipeStorage));
+    window.localStorage.setItem("recipeList", JSON.stringify(recentRecipeStorage));
 
     appendRow(foodName, foodID);
   }
@@ -157,7 +157,7 @@ var formSubmitHandler = function (event) {
   event.preventDefault();
 
   // get value from input element
-  let searchFood = searchInput3.value;
+  var searchFood = searchInput3.value;
   console.log(searchFood);
 
   // clear search input and old data
@@ -181,7 +181,13 @@ $("#recipes-container3").on("click", "li", function () {
 // Load Recent Recipe List Local Storage
 var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
 for (let i=0; i < recentRecipeStorage.length; i++) {
-  appendRow(recentRecipeStorage[i]);
+  console.log(recentRecipeStorage.length);
+  let storageName = recentRecipeStorage[i];
+  console.log(storageName);
+  let storageID = recentRecipeStorage[i+1];
+  console.log(storageID);
+  i++;
+  appendRow(storageName, storageID);
 }
 
 // Event Listener Section
@@ -191,3 +197,5 @@ searchForm3.addEventListener("submit", formSubmitHandler);
 // var foodObject = JSON.parse(window.localStorage.getItem("searchRecipe")) || [];
 var foodID = "2858"; // Need to pull this data from detailStorage.
 foodDetail(foodID);
+
+// 7909, 2858
