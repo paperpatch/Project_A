@@ -40,7 +40,7 @@ var getTrendingData = function(data) {
     let foodID = trendingRecipe[i].id
 
     // create card for each [i]
-    let trendingCard = $("<div>").addClass("card cell medium-4 large-3 shrink").attr("id", foodID);
+    let trendingCard = $("<div>").addClass("card small-12 medium-4 large-3 shrink").attr("id", foodID);
     let trendingSection = $("<div>").addClass("card-section");
     let trendingImg = $("<img>").attr("src", foodImg).addClass("trending-img");
     let trendingSection2 = $("<div>").addClass("card-section");
@@ -124,7 +124,6 @@ var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) 
 $("#recipes-container").empty();
 
 for (let i=0; i < recentRecipeStorage.length; i++) {
-  console.log(recentRecipeStorage)
   appendRow(recentRecipeStorage[i].name, recentRecipeStorage[i].id);
 }
 

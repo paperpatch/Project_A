@@ -34,3 +34,26 @@ p {
 .card {
   border: none;
 }
+
+@media screen and (max-width: 1200px) {
+
+}
+
+@media screen and (max-width: 1024px) {
+
+}
+@media screen and (max-width: 768px) {
+  nav {
+    padding: 10 0px;
+  }
+  form {
+    padding: 0px;
+  }
+  label {
+    padding: 10 0px;
+  }
+}
+@media screen and (max-width: 480px) {
+
+}
+
