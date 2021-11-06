@@ -19,6 +19,9 @@ label {
 .front-page {
   margin: 10px;
 }
+.front-page p{
+  padding: 1rem;
+}
 .front-image {
   max-width: 50rem;
   max-height: 50rem;
@@ -40,7 +43,9 @@ p {
 }
 
 @media screen and (max-width: 1024px) {
-
+  .front-page p{
+    padding: 0.5rem;
+  }
 }
 @media screen and (max-width: 768px) {
   nav {

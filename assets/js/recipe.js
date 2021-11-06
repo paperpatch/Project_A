@@ -38,7 +38,7 @@ var getRecipeCard = function(data) {
     let foodID = data.results[i].id
 
     // create card for each [i]
-    let discoverCard = $("<div>").addClass("card small-3").attr("id", foodID);
+    let discoverCard = $("<div>").addClass("card large-2 medium-4 small-12").attr("id", foodID);
     let discoverSection = $("<div>").addClass("card-section");
     let discoverImg = $("<img>").attr("src", foodImg).addClass("trending-img");
     let discoverSection2 = $("<div>").addClass("card-section");
