@@ -2,6 +2,7 @@ var apiKey = "3a44b6d72cmsh2c9491cf44c4730p152adajsn7b494b9925d6";
 var searchForm3 = document.querySelector("#search-form3");
 var searchInput3 = document.querySelector("#input-search3");
 
+
 /* ---------------------- RECIPE SECTION ---------------------- */
 
 var foodDetail = function(foodID) {
@@ -13,8 +14,10 @@ var foodDetail = function(foodID) {
     }
   })
   .then(response => {
+    console.log(response)
     if (response.ok) {
       response.json().then(function (data) {
+        // console.log(data);
         getRecipeDetail(data);
       })
     } else {
@@ -129,10 +132,22 @@ var getNutritionDetail = function(data) {
 
 // Append Recipes List Function
 
-var getRecipeList = function (foodName, foodID) {
+function getRecipeList(foodName, foodID) {
   // Add recipes to list, don't let it repeat. If recentRecipe can be found. 1 for yes. -1 for no.
-  if (recentRecipeStorage.indexOf(foodName) === -1) {
-    recentRecipeStorage.unshift(foodName, foodID);
+  for (let i=0; i<recentRecipeStorage.length+1; i++) {
+
+    // check if array exist. First array case only
+    if (recentRecipeStorage.length === 0) {
+      recentRecipeStorage[recentRecipeStorage.length]={id: foodID, name: foodName}
+      window.localStorage.setItem("recipeList", JSON.stringify(recentRecipeStorage));
+      appendRow(foodName, foodID);
+      return;
+    }
+    // check if name already exist
+    if (recentRecipeStorage[i].name === foodName ) {
+      return;
+    }
+    recentRecipeStorage[recentRecipeStorage.length]={id: foodID, name: foodName}
     window.localStorage.setItem("recipeList", JSON.stringify(recentRecipeStorage));
 
     appendRow(foodName, foodID);
@@ -141,7 +156,7 @@ var getRecipeList = function (foodName, foodID) {
 
 // Append Recipe List Function
 
-var appendRow = function(foodName, foodID) {
+function appendRow(foodName, foodID) {
   let li = $("<li>").attr("id", foodID).text(foodName);
   $("#recipes-container3").append(li);
 }
@@ -150,7 +165,7 @@ var appendRow = function(foodName, foodID) {
 
 // Search Function
 
-var formSubmitHandler = function (event) {
+function formSubmitHandler(event) {
   event.preventDefault();
 
   // get value from input element
@@ -180,10 +195,8 @@ var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) 
 $("#recipes-container3").empty();
 
 for (let i=0; i < recentRecipeStorage.length; i++) {
-  let storageName = recentRecipeStorage[i];
-  let storageID = recentRecipeStorage[i+1];
-  i++;
-  appendRow(storageName, storageID);
+  console.log(recentRecipeStorage)
+  appendRow(recentRecipeStorage[i].name, recentRecipeStorage[i].id);
 }
 
 // Event Listener Section
