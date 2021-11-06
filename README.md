@@ -1,20 +1,48 @@
-# Open Fridge
+# OPEN FRIDGE
 
-<a href="">Open Fridge Application</a>
+## CONTENTS OF THIS FILE
 
-## The Repository
+* Introduction
+* How to Use
+* Deployment
+* Contribution
 
-This repository is where we (Pat Chen, Michael Zelaya, and Brandon Conte) create a fully responsive website where 
+## INTRODUCTION
 
-<img src="./assets/images/demo.png"/> Insert picture/GIF 
-<br>
-<img src="./assets/images/demo.png"/> Insert picture/GIF
+[Open Fridge](https://paperpatch.github.io/open_fridge/)
+<br/>
+<br/>
+A fully reponsive recipe dashboard website where the user can find recipes and nutritional values based on Tasty API and Ninjas Nutritional API. A simple, useful daily app that anyone can use to cook a meal from home where working from home is getting normalized.
+<br/>
+<br/>
+Built With:
 
-## Open Fridge
+- HTML
+- CSS
+- JavaScript
+- Foundation CSS Framework 6.7.3
+- jQuery
+- Tasty API
+- Ninjas Nutritional API
+- Font Awesome 6.0
 
-In this repository, you can find a <a href="">live</a> url deployment of a fully functioning recipe and nutritional value lookup. Upon visitng the web address, you may enter in a food, ingredient or complete dish that you like and it will display that set of ingredients and nutritional values so that the user understands what they are consuming.
+![Alt text](./assets/images/screenshot-index.png "index webpage") 
+![Alt text](./assets/images/screenshot-discover.png "discover recipe webpage") 
+![Alt text](./assets/images/screenshot-detail.png "detail webpage") 
 
-## Our goal
+## HOW TO USE
 
-We wanted to create a simple, useful daily app that anyone can use. This is especially helpful during our time where working from home is getting normalized.
+In this repository, you can find a [live](https://paperpatch.github.io/open_fridge/) url deployment of a fully functioning recipe and nutritional value lookup. Upon visitng the web address, you may search for a recipe dish that you would like to make. It will display a set of recipes for you to choose from. Clicking on an image will display a set of instructions and nutritional values from the recipe.
+<br/>
+<br/>
+When a specific recipe dish is selected, the name of the dish will be appended on the `[Recent Recipes]` list on the left navigation bar. Data is stored and transferred via localStorage.
 
+## DEPLOYMENT
+
+[Click the link here](https://paperpatch.github.io/open_fridge/)
+
+## CONTRIBUTION
+
+- Patrick Chen - paperpatch
+- Brandon Conte - BrandonConte
+- Michael Zelaya - Vertis-Z

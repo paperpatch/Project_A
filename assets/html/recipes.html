@@ -5,185 +5,78 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.3/dist/css/foundation.min.css"
     crossorigin="anonymous">
-  <link rel="stylesheet" href="/assets/css/recipeStyle.css">
+  <link rel="stylesheet" href="../css/style.css">
   <title>Open Fridge</title>
 </head>
 
-<body class="flex-container">
-  
-    
-  <nav class="sideNav" id="mySideNav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <h1 class="ourName">Open Fridge</h1>
-    <p class="ourName" id="slogan">Good Meals, Good Life</p>
+
+<body class="grid-x">
+  <nav class="large-2 medium-3 small-4">
+    <img class="align-middle" src="../images/open_fridge.PNG" style="width: 100%;">
+    <p>Good Meals, Good Life</p>
     <hr>
-    <!-- Not sure if I want to keep this line below -->
-    <p class="ourName">Type in an ingredient or recipe below</p> 
-    <input class="searchBar" type="text" placeholder="Enter recipe name here">
-    <hr>
-    <div class="row">
-      <div class="medium-4 column">
+    <div class="grid-y">
+      <div class="medium-12">
         <ul class="menu vertical">
-          <h3 class="titleNav">Menu</h3>
-          <li><a href="/index.html">Home</a></li>
-          <li><a href="recipes.html">Discover Recipes</a></li>
-          <li><a href="#">Random</a></li>
+          <h4>Menu</h4>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="./recipes.html">Discover Recipes</a></li>
         </ul>
       </div>
     </div>
     <hr>
-    <div class="medium-4 column">
-      <ul class="menu vertical">
-        <h3 class="titleNav">Quick Recipes</h3>
-        <li><a href="#">Chicken Dish</a></li>
-        <li><a href="#">Tomato Soup</a></li>
-        <li><a href="#">Random</a></li>
-      </ul>
+    <div class="medium-12">
+      <form class="menu vertical">
+        <h4>Recent Recipes</h4>
+        <ul id="recipes-container2" class="menu vertical">
+
+        </ul>
+      </form>
     </div>
-    
-    </div>
-    
   </nav>
-  <div id="main">
-    <button class="openbtn" onclick="openNav()">&#9776; Open Sidebar</button>
-    </div> 
 
+  <main class="large-10 medium-9 small-8 column">
+    <form id="search-form2" class="search-form">
+      <div class="grid-x">
+        <label class="medium-7 fa-solid fa-magnifying-glass fa-lg text-right" for="input-search2"></label>
+        <input id="input-search2" class="medium-5" type='text' autofocus="true" placeholder="Search for Recipes...">
+        <button type="submit" class="btn"></button>
+      </div>
+    </form>
 
-  <!-- <main class="grid-container">
-    <div class="row">
-      <section class="startRecipe">
-        <div class="flex-child-auto">
-          <h2>Let's Start Cooking With Recipes!</h2>
-          <p>Want to learn how to cook but confused on how to start?</p>
-          <p>No need to worry! Check out below or click <a href="#">here</a>!</p>
+    <span>
+      <h2>Discover Recipes</h2>
+    </span>
+
+    <section class="callout categories">
+      <h4>Popular Categories</h4>
+      <div class="grid-x">
+        <div class="columns">
+          <a class="button" href="#">Protein Diet</a>
+          <a class="button" href="#">Vegetarian</a>
+          <a class="button" href="#">Vegan</a>
+          <a class="button" href="#">Keto</a>
+          <a class="button" href="#">Chicken</a>
+          <a class="button" href="#">Salad</a>
+          <a class="button" href="#">Beverages</a>
+          <a class="button" href="#">Soups</a>
+          <a class="button" href="#">Beef</a>
         </div>
-      </section>
-      <section class="column callout flex-container align-middle align-spaced">
-        <img>Some random picture. Can be static or randomly changed.
-      </section>
-    </div>
-    <section>
-      <h3>Popular Categories?</h3>
-      <p>Buttons? Tags? A link to go to Discover Recipes?</p>
+      </div>
     </section>
-    <section>
-      <h3>Trending Recipe?</h3>
+
+    <section class="callout">
+      <h4 id="recipeGridTitle" class="availableRecipes"></h4>
+      <div id="recipeGrid" class="grid-x grid-x-padding">
+        <!-- Append cards here with ID -->
+      </div>
     </section>
-  </main> -->
-  <main class="grid-container">
-    <div class="">
-      <!-- Some Search Button -->
-    </div>
-    <div class="row">
-      <section class="column callout flex-container align-middle align-spaced">
-        <div class="flex-child-auto">
-          <h2>Discover Recipes</h2>
-        </div>
-      </section>
-      <section class="column callout flex-container align-middle">
-        
-        <div class="dropdown">
-            <button class="dropbtn">Filter</button>
-            <div class="dropdown-content" id="filterItems">
-              <a href="#">Protein Diet</a>
-              <a href="#">Vegetarian</a>
-              <a href="#">Vegan</a>
-              <a href="#">Keto</a>
-            </div>
-          </div>
-
-
-      </section>
-      <section class="column callout align-middle align-spaced">
-        <h2>Section content</h2>
-        <div class="grid-container">
-          <div class="grid-x grid-margin-x small-up-2 medium-up-3">
-            <div class="cell">
-              <div class="card" style="width: 300px;">
-                <div class="card-divider">
-                  Card name
-                </div>
-                <img src="" alt="Replace me!">
-                <div class="card-selection">
-                  <h4>Dish Name</h4>
-                  <li>[clock icon] 1hr</li>
-                  <li>[Shopping Cart icon] 8 ingrediants</li>
-                </div>
-              </div>
-            </div>
-            <div class="cell">
-              <div class="card" style="width: 300px;">
-                <div class="card-divider">
-                  Card name
-                </div>
-                <img src="" alt="Replace me!">
-                <div class="card-selection">
-                  <h4>Dish Name</h4>
-                  <li>[clock icon] 1hr</li>
-                  <li>[Shopping Cart icon] 8 ingrediants</li>
-                </div>
-              </div>
-            </div>
-            <div class="cell">
-              <div class="card" style="width: 300px;">
-                <div class="card-divider">
-                  Card name
-                </div>
-                <img src="" alt="Replace me!">
-                <div class="card-selection">
-                  <h4>Dish Name</h4>
-                  <li>[clock icon] 1hr</li>
-                  <li>[Shopping Cart icon] 8 ingrediants</li>
-                </div>
-              </div>
-            </div>
-            <div class="cell">
-              <div class="card" style="width: 300px;">
-                <div class="card-divider">
-                  Card name
-                </div>
-                <img src="" alt="Replace me!">
-                <div class="card-selection">
-                  <h4>Dish Name</h4>
-                  <li>[clock icon] 1hr</li>
-                  <li>[Shopping Cart icon] 8 ingrediants</li>
-                </div>
-              </div>
-            </div>
-            <div class="cell">
-              <div class="card" style="width: 300px;">
-                <div class="card-divider">
-                  Card name
-                </div>
-                <img src="" alt="Replace me!">
-                <div class="card-selection">
-                  <h4>Dish Name</h4>
-                  <li>[clock icon] 1hr</li>
-                  <li>[Shopping Cart icon] 8 ingrediants</li>
-                </div>
-              </div>
-            </div>
-            <div class="cell">
-              <div class="card" style="width: 300px;">
-                <div class="card-divider">
-                  Card name
-                </div>
-                <img src="" alt="Replace me!">
-                <div class="card-selection">
-                  <h4>Dish Name</h4>
-                  <li>[clock icon] 1hr</li>
-                  <li>[Shopping Cart icon] 8 ingrediants</li>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
   </main>
   <footer>
 
@@ -197,11 +90,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.3/dist/js/foundation.min.js" crossorigin="anonymous">
   </script>
-  <script src="./assets/js/script.js"></script>
-  <script src="/assets/js/navbar.js"></script>
+  <script src="../js/recipe.js"></script>
 </body>
 
 </html>
