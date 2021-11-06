@@ -28,8 +28,6 @@ var foodDetail = function(foodID) {
 }
 
 var getRecipeDetail = function(data) {
-  console.log(data);
-
   // clear previous data
   $("#instruction-list").empty();
 
@@ -58,7 +56,7 @@ var getRecipeDetail = function(data) {
   let detailSection = $("<div>").addClass("card-section");
   let detailImg = $("<img>").attr("src", foodImg).addClass("detail-img");
   let detailName = $("<h5>").text(foodName);
-  let detailTime = $("<p>").text("Time: " + foodTime);
+  let detailTime = $("<p>").text("Time: " + foodTime + " minutes");
   let detailServings = $("<p>").text("Servings: " + foodServings);
   let detailInstructionHeader = $("<h5>").text("Instructions");
   let detailUnorderedList = $("<ul>");
@@ -101,7 +99,6 @@ var fetchNutrition = function(foodName) {
 }
 
 var getNutritionDetail = function(data) {
-  // console.log(data);
   // clear previous data
   $("#nutrition-list").empty();
 
@@ -169,8 +166,7 @@ var formSubmitHandler = function (event) {
   event.preventDefault();
 
   // get value from input element
-  var searchFood = searchInput3.value;
-  console.log(searchFood);
+  var searchFood = searchInput3.value.trim();
 
   // clear search input and old data
   $("#input-search3").val("");
@@ -178,8 +174,7 @@ var formSubmitHandler = function (event) {
 
   // set to localStorage for Discover Recipes HTML Page
   window.localStorage.setItem("searchRecipe", JSON.stringify(searchFood));
-  // redirect to page
-  window.location.assign('./assets/html/recipes.html')
+  window.location.assign('./recipes.html')
 }
 
 // Recent Search List Function
@@ -197,7 +192,6 @@ var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) 
 $("#recipes-container3").empty();
 
 for (let i=0; i < recentRecipeStorage.length; i++) {
-  console.log(recentRecipeStorage)
   appendRow(recentRecipeStorage[i].name, recentRecipeStorage[i].id);
 }
 
@@ -205,8 +199,5 @@ for (let i=0; i < recentRecipeStorage.length; i++) {
 searchForm3.addEventListener("submit", formSubmitHandler);
 
 // Load Searched Recipe
-// var foodObject = JSON.parse(window.localStorage.getItem("searchRecipe")) || [];
-var foodID = "2858"; // Need to pull this data from detailStorage.
+var foodID = JSON.parse(window.localStorage.getItem("recentRecipe")) || [];
 foodDetail(foodID);
-
-// 7909, 2858

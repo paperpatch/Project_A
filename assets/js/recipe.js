@@ -28,24 +28,14 @@ var foodRecipeFilter = function (searchValue) {
 }
 
 var getRecipeCard = function(data) {
-  console.log(data);
-
   // empty previous data
-  $("#recipeGridTitle").empty();
   $("#recipeGrid").empty();
-
-  // make title for grid. Value taken from searched name from bottom of page.
-  // $("#recipeGridTitle").text("Related Recipes: " + searchValue.split("%20").join(" "));}
 
   for (let i=0; i < data.results.length; i++) {
     // get variables
     let foodName = data.results[i].name;
-    console.log()
     let foodImg = data.results[i].thumbnail_url;
     let foodID = data.results[i].id
-
-    // make title for grid. Value taken from searched name from bottom of page.
-    $("#recipeGridTitle").text("Related Recipes: " + foodName)
 
     // create card for each [i]
     let discoverCard = $("<div>").addClass("card small-3").attr("id", foodID);
@@ -70,29 +60,56 @@ var formSubmitHandler = function (event) {
   event.preventDefault();
 
   // get value from input element
-  let searchFood = searchInput2.value;
-  searchFood.trim();
+  var searchFood = searchInput2.value.trim();
 
   // empty old data
   $("#input-search2").empty();
+  $("#recipeGridTitle").empty();
 
+  // make title for grid.
+  $("#recipeGridTitle").text("Related Recipes: " + searchFood)
+
+  // need to replace 'spaces' with %20 for fetch request to work
   let searchFoodReplaceSpace = searchFood.split(" ").join("%20");
   foodRecipeFilter(searchFoodReplaceSpace);
 }
 
+// Filter Category Function
+
+$(".categories").on("click", "a", function () {
+
+  // set localStorage for detail html page
+  let searchButton = $(this).text();
+  // make title for grid.
+  $("#recipeGridTitle").empty();
+  $("#recipeGridTitle").text("Related Recipes: " + searchButton)
+
+  foodRecipeFilter(searchButton);
+})
+
 // Appended Recent Search List for Details HTML Page
-$("#recipes-container2").on("click", "li", function () {
+$("#recipes-container2").on("click", "img", function () {
   // clear old data
   window.localStorage.removeItem("recentRecipe")
-  // set localStorage for third html page
+
+  // set localStorage for detail html page
   let searchList = $(this).attr("id");
   window.localStorage.setItem("recentRecipe", JSON.stringify(searchList));
-  // redirect to page
+  window.location.assign('../html/detail.html')
+})
+
+// Clickable Cards List for Details HTML Page
+$("#recipeGrid").on("click", "div", function () {
+  // clear old data
+  window.localStorage.removeItem("recentRecipe")
+
+  // set localStorage for detail html page
+  let searchList = $(this).attr("id");
+  window.localStorage.setItem("recentRecipe", JSON.stringify(searchList));
   window.location.assign('../html/detail.html')
 })
 
 // Append Recipe List Function
-
 var appendRow = function(foodName, foodID) {
   let li = $("<li>").attr("id", foodID).text(foodName);
   $("#recipes-container2").append(li);
@@ -108,7 +125,6 @@ var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) 
 $("#recipes-container2").empty();
 
 for (let i=0; i < recentRecipeStorage.length; i++) {
-  console.log(recentRecipeStorage)
   appendRow(recentRecipeStorage[i].name, recentRecipeStorage[i].id);
 }
 
@@ -116,5 +132,12 @@ for (let i=0; i < recentRecipeStorage.length; i++) {
 searchForm2.addEventListener("submit", formSubmitHandler);
 
 // Load Searched Recipe
-var recipeStorage = JSON.parse(window.localStorage.getItem("searchList")) || [];
-foodRecipeFilter(recipeStorage);
+var recipeStorage = JSON.parse(window.localStorage.getItem("searchRecipe")) || [];
+
+// make title for grid.
+$("#recipeGridTitle").empty();
+$("#recipeGridTitle").text("Related Recipes: " + recipeStorage)
+
+// need to replace 'spaces' with %20 for fetch request to work
+var recipeStorageReplaceSpace = recipeStorage.split(" ").join("%20");
+foodRecipeFilter(recipeStorageReplaceSpace);

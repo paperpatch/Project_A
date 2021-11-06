@@ -13,10 +13,8 @@ var trendingRecipe = function() {
     }
   })
   .then(response => {
-    console.log(response);
     if (response.ok) {
       response.json().then(function (data) {
-        console.log(data);
         getTrendingData(data);
       })
     } else {
@@ -32,7 +30,6 @@ var trendingRecipe = function() {
 var getTrendingData = function(data) {
   // get trending dishes
   let trendingRecipe = data.results[2].items;
-  console.log(trendingRecipe);
 
   for (let i=0; i < trendingRecipe.length-2; i++) {
     // get variables
@@ -41,8 +38,6 @@ var getTrendingData = function(data) {
     let foodRating = trendingRecipe[i].user_ratings.count_positive;
     let foodScore = trendingRecipe[i].user_ratings.score;
     let foodID = trendingRecipe[i].id
-
-    // console.log(foodID);
 
     // create card for each [i]
     let trendingCard = $("<div>").addClass("card small-3").attr("id", foodID);
@@ -53,7 +48,6 @@ var getTrendingData = function(data) {
     let trendingRating = $("<p>").text("Liked: " + foodRating);
     let trendingScore = $("<p>").text((foodScore * 100).toFixed(2) + "%");
 
-    console.log(trendingCard);
     // append cards
     $(".trendingRecipes").append(trendingCard);
     trendingCard.append(trendingSection, trendingSection2);
@@ -70,8 +64,7 @@ var formSubmitHandler = function (event) {
   event.preventDefault();
 
   // get value from input element
-  let searchFood = searchInput.value;
-  console.log(searchFood);
+  var searchFood = searchInput.value.trim();
 
   // clear search input and old data
   $("#input-search").val("");
@@ -79,26 +72,46 @@ var formSubmitHandler = function (event) {
 
   // set to localStorage for Discover Recipes HTML Page
   window.localStorage.setItem("searchRecipe", JSON.stringify(searchFood));
-  // redirect to page
   window.location.assign('./assets/html/recipes.html')
 }
+
+// Filter Category Section
+
+$(".categories").on("click", "a", function () {
+  // clear old data
+  window.localStorage.removeItem("searchRecipe")
+
+  // set localStorage for detail html page
+  let searchButton = $(this).text();
+  window.localStorage.setItem("searchRecipe", JSON.stringify(searchButton));
+  window.location.assign('./assets/html/recipes.html')
+})
 
 // Appended Recent Search List for Details HTML Page
 $("#recipes-container").on("click", "li", function () {
   // clear old data
   window.localStorage.removeItem("recentRecipe")
-  // set localStorage for third html page
+
+  // set localStorage for detail html page
   let searchList = $(this).attr("id");
   window.localStorage.setItem("recentRecipe", JSON.stringify(searchList));
-  // redirect to page
+  window.location.assign('./assets/html/detail.html')
+})
+
+// Clickable Cards List for Details HTML Page
+$(".trendingRecipes").on("click", "div", function () {
+  // clear old data
+  window.localStorage.removeItem("recentRecipe")
+
+  // set localStorage for detail html page
+  let searchList = $(this).attr("id");
+  window.localStorage.setItem("recentRecipe", JSON.stringify(searchList));
   window.location.assign('./assets/html/detail.html')
 })
 
 // Append Recipe List Function
-
 var appendRow = function(foodName, foodID) {
   let li = $("<li>").attr("id", foodID).text(foodName);
-  console.log(li);
   $("#recipes-container").append(li);
 }
 
@@ -111,7 +124,6 @@ var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) 
 $("#recipes-container").empty();
 
 for (let i=0; i < recentRecipeStorage.length; i++) {
-  console.log(recentRecipeStorage)
   appendRow(recentRecipeStorage[i].name, recentRecipeStorage[i].id);
 }
 
