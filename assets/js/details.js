@@ -132,10 +132,22 @@ var getNutritionDetail = function(data) {
 
 // Append Recipes List Function
 
-var getRecipeList = function (foodName, foodID) {
+function getRecipeList(foodName, foodID) {
   // Add recipes to list, don't let it repeat. If recentRecipe can be found. 1 for yes. -1 for no.
-  if (recentRecipeStorage.indexOf(foodName) === -1) {
-    recentRecipeStorage.unshift(foodName, foodID);
+  for (let i=0; i<recentRecipeStorage.length+1; i++) {
+
+    // check if array exist. First array case only
+    if (recentRecipeStorage.length === 0) {
+      recentRecipeStorage[recentRecipeStorage.length]={id: foodID, name: foodName}
+      window.localStorage.setItem("recipeList", JSON.stringify(recentRecipeStorage));
+      appendRow(foodName, foodID);
+      return;
+    }
+    // check if name already exist
+    if (recentRecipeStorage[i].name === foodName ) {
+      return;
+    }
+    recentRecipeStorage[recentRecipeStorage.length]={id: foodID, name: foodName}
     window.localStorage.setItem("recipeList", JSON.stringify(recentRecipeStorage));
 
     appendRow(foodName, foodID);
@@ -185,13 +197,8 @@ var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) 
 $("#recipes-container3").empty();
 
 for (let i=0; i < recentRecipeStorage.length; i++) {
-  console.log(recentRecipeStorage.length);
-  let storageName = recentRecipeStorage[i];
-  console.log(storageName);
-  let storageID = recentRecipeStorage[i+1];
-  console.log(storageID);
-  i++;
-  appendRow(storageName, storageID);
+  console.log(recentRecipeStorage)
+  appendRow(recentRecipeStorage[i].name, recentRecipeStorage[i].id);
 }
 
 // Event Listener Section
