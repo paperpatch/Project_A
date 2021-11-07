@@ -1,4 +1,5 @@
 var apiKey = "3a44b6d72cmsh2c9491cf44c4730p152adajsn7b494b9925d6";
+var apiKey2 = "5eedb034a3msha6329e8ee03862bp1ded91jsn5333cfd314b9"
 var searchForm = document.querySelector("#search-form");
 var searchInput = document.querySelector("#input-search");
 
@@ -9,7 +10,7 @@ var trendingRecipe = function() {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "tasty.p.rapidapi.com",
-      "x-rapidapi-key": apiKey,
+      "x-rapidapi-key": apiKey2,
     }
   })
   .then(response => {
