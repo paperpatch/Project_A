@@ -1,4 +1,5 @@
 var apiKey = "3a44b6d72cmsh2c9491cf44c4730p152adajsn7b494b9925d6";
+var apiKey2 = "5eedb034a3msha6329e8ee03862bp1ded91jsn5333cfd314b9";
 var searchForm3 = document.querySelector("#search-form3");
 var searchInput3 = document.querySelector("#input-search3");
 
@@ -10,14 +11,13 @@ var foodDetail = function(foodID) {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "tasty.p.rapidapi.com",
-      "x-rapidapi-key": apiKey,
+      "x-rapidapi-key": apiKey2,
     }
   })
   .then(response => {
-    console.log(response)
     if (response.ok) {
       response.json().then(function (data) {
-        // console.log(data);
+        console.log(data);
         getRecipeDetail(data);
       })
     } else {
@@ -131,26 +131,26 @@ var getNutritionDetail = function(data) {
 /* ---------------------- APPEND RECIPES LIST SECTION ---------------------- */
 
 // Append Recipes List Function
-
 function getRecipeList(foodName, foodID) {
-  // Add recipes to list, don't let it repeat. If recentRecipe can be found. 1 for yes. -1 for no.
-  for (let i=0; i<recentRecipeStorage.length+1; i++) {
 
+  for (let i=0; i<recentRecipeStorage.length; i++) {
     // check if array exist. First array case only
-    if (recentRecipeStorage.length === 0) {
-      recentRecipeStorage[recentRecipeStorage.length]={id: foodID, name: foodName}
-      window.localStorage.setItem("recipeList", JSON.stringify(recentRecipeStorage));
-      appendRow(foodName, foodID);
+    if (recentRecipeStorage.length === 0 || recentRecipeStorage.length === undefined) {
+      console.log("First check. This should be the only check out of 3.")
       return;
     }
+
     // check if name already exist
-    if (recentRecipeStorage[i].name === foodName ) {
+    if (recentRecipeStorage.indexOf([i]) === foodName ) {
       return;
     }
-    recentRecipeStorage[recentRecipeStorage.length]={id: foodID, name: foodName}
+
+    console.log("Third check. Appends every time this appears.")
+    recentRecipeStorage[recentRecipeStorage.length]={name: foodName, id: foodID}
     window.localStorage.setItem("recipeList", JSON.stringify(recentRecipeStorage));
 
     appendRow(foodName, foodID);
+    return;
   }
 };
 
