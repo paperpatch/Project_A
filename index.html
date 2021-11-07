@@ -16,8 +16,8 @@
 </head>
 
 <body class="grid-x">
-  <nav class="large-2 medium-3 small-4">
-    <img class="align-middle" src="assets/images/open_fridge.PNG" style="width: 100%;">
+  <nav class="large-2 medium-3 small-12">
+    <img class="align-middle" src="./assets/images/open_fridge.PNG" style="width: 100%;">
     <p>Good Meals, Good Life</p>
     <hr>
     <div class="grid-y">
@@ -39,16 +39,14 @@
     </div>
   </nav>
 
-  <main class="large-10 medium-9 small-8 column">
-    <form id="search-form" class="search-form">
-      <div class="grid-x">
-        <label class="medium-7 fa-solid fa-magnifying-glass fa-lg text-right" for="input-search"></label>
-        <input id="input-search" class="medium-5" type='text' autofocus="true" placeholder="Search for Recipes...">
-        <button type="submit" class="btn"></button>
-      </div>
+  <main class="large-10 medium-9 small-12">
+    <form id="search-form" class="search-form grid-x">
+      <label class="small-1 medium-2 large-7 fa-solid fa-magnifying-glass fa-lg text-right" for="input-search"></label>
+      <input id="input-search" class="small-11 medium-10 large-5" type='text' autofocus="true" placeholder="Search for Recipes...">
+      <button type="submit" class="btn"></button>
     </form>
-    <div class="grid-x grid-padding-x align-middle align-justify front-page">
-      <section class="large-4 medium-5 small-12">
+    <div class="grid-x grid-margin-x align-middle align-justify front-page">
+      <section class="small-12 medium-12 large-4">
         <div class="flex-child-auto">
           <h2>Let's Start Cooking With Your Favorite Recipes!</h2>
           <p>Want to learn how to cook but confused on how to start?</p>
@@ -56,38 +54,30 @@
         </div>
       </section>
 
-      <section class="large-8 medium-7 small-12 text-center">
+      <section class="small-12 medium-12 large-8 text-center">
         <img class="front-image" src="assets/images/home_cooking.jpg">
       </section>
     </div>
     <section class="callout categories">
       <h4>Popular Categories</h4>
-      <div class="row">
-        <div class="columns medium-6">
-          <div class="button-group">
-            <a class="button" href="#">Protein Diet</a>
-            <a class="button" href="#">Vegetarian</a>
-            <a class="button" href="#">Vegan</a>
-            <a class="button" href="#">Keto</a>
-            <a class="button" href="#">Chicken</a>
-            <a class="button" href="#">Salad</a>
-            <a class="button" href="#">Beverages</a>
-            <a class="button" href="#">Soups</a>
-            <a class="button" href="#">Beef</a>
-          </div>
+        <div class="button-group">
+          <a class="button" href="#">Protein Diet</a>
+          <a class="button" href="#">Vegetarian</a>
+          <a class="button" href="#">Vegan</a>
+          <a class="button" href="#">Keto</a>
+          <a class="button" href="#">Chicken</a>
+          <a class="button" href="#">Salad</a>
+          <a class="button" href="#">Beverages</a>
+          <a class="button" href="#">Soups</a>
+          <a class="button" href="#">Beef</a>
         </div>
-      </div>
     </section>
     <section class="callout">
       <h4>Trending Recipes</h4>
-      <div class="grid-x trendingRecipes"></div>
+      <div class="grid-x grid-margin-x trendingRecipes"></div>
       
     </section>
   </main>
-  <footer>
-
-  </footer>
-
 
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>

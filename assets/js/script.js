@@ -40,7 +40,7 @@ var getTrendingData = function(data) {
     let foodID = trendingRecipe[i].id
 
     // create card for each [i]
-    let trendingCard = $("<div>").addClass("card small-3").attr("id", foodID);
+    let trendingCard = $("<div>").addClass("card small-12 medium-4 large-3 shrink").attr("id", foodID);
     let trendingSection = $("<div>").addClass("card-section");
     let trendingImg = $("<img>").attr("src", foodImg).addClass("trending-img");
     let trendingSection2 = $("<div>").addClass("card-section");
