@@ -132,26 +132,24 @@ var getNutritionDetail = function(data) {
 // Append Recipes List Function
 function getRecipeList(foodName, foodID) {
 
-  for (let i=0; i<recentRecipeStorage.length; i++) {
-    // check if array exist. First array case only
-    if (recentRecipeStorage.length === 0 || recentRecipeStorage.length === undefined) {
-      console.log("First check. This should be the only check out of 3.")
-      return;
-    }
-
-    // check if name already exist
-    if (recentRecipeStorage.indexOf([i]) === foodName ) {
-      console.log("Second check. no nested loop.")
-      return;
-    }
-
-    console.log("Third check. Appends every time this appears.")
-    recentRecipeStorage[recentRecipeStorage.length]={name: foodName, id: foodID}
-    window.localStorage.setItem("recipeList", JSON.stringify(recentRecipeStorage));
-
-    appendRow(foodName, foodID);
+  // check if array exist. First array case only
+  if (recentRecipeStorage.length === 0 || recentRecipeStorage.length === undefined) {
+    // console.log("First check. This should be the only check out of 3.")
     return;
   }
+
+  for (let i=0; i<recentRecipeStorage.length; i++) {
+    // check if name already exist
+    if (recentRecipeStorage[i].name === foodName ) {
+      // console.log("Existing check. No appending should happen")
+      return;
+    }
+  }
+  // console.log("Third check. Appends every time this appears.")
+  recentRecipeStorage[recentRecipeStorage.length]={name: foodName, id: foodID}
+  window.localStorage.setItem("recipeList", JSON.stringify(recentRecipeStorage));
+
+  appendRow(foodName, foodID);
 };
 
 // Append Recipe List Function
