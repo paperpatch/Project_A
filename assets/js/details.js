@@ -17,7 +17,6 @@ var foodDetail = function(foodID) {
   .then(response => {
     if (response.ok) {
       response.json().then(function (data) {
-        console.log(data);
         getRecipeDetail(data);
       })
     } else {
@@ -142,6 +141,7 @@ function getRecipeList(foodName, foodID) {
 
     // check if name already exist
     if (recentRecipeStorage.indexOf([i]) === foodName ) {
+      console.log("Second check. no nested loop.")
       return;
     }
 
