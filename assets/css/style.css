@@ -21,6 +21,7 @@ label {
 }
 .front-page p{
   padding: 1rem;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 .front-image {
   max-width: 50rem;
@@ -28,14 +29,28 @@ label {
 }
 h2 {
   padding: 1rem;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 p {
   margin: 0;
   padding: 0 0.5rem;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .card {
   border: none;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.categories div {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.categories h4 {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 @media screen and (max-width: 1200px) {
