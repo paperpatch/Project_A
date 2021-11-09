@@ -1,64 +1,154 @@
+:root {
+  --sans-serif: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  --cyan: #0dcaf0;
+  --darkcyan: #0f83ad;
+  --blue: #002b41;
+  --white: #F5FAF9;
+  --grey: #f0f0f0da;
+  --black: #000000;
+}
+
 body {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: var(--sans-serif);
 }
 
 /* Navigation Section */
 
 nav {
   padding: 25px;
+  background-color: var(--grey);
 }
+
+.logo h4 {
+  font-size: 33px;
+  font-weight: bold;
+}
+
+.logo,
+.slogan {
+  text-align: center;
+  font-weight: bold;
+  color: var(--black);
+}
+
+mark.blue {
+  color: var(--darkcyan);
+  background: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--blue);
+}
+
+li {
+  transition: all 0.5s ease-out;
+}
+
+li:hover {
+  color: var(--darkcyan);
+}
+
+#recipes-container li,
+#recipes-container2 li,
+#recipes-container3 li {
+  padding: 0.7rem;
+}
+
+/* Search Bar */
+
 form {
   padding: 30px;
 }
+
 label {
   padding: 20px;
 }
 
-/* Main Section */
+/* Front Page Hero Section */
+
+main {
+  padding: 0 3rem;
+}
 
 .front-page {
   margin: 10px;
 }
-.front-page p{
+
+.front-page p {
   padding: 1rem;
 }
+
 .front-image {
   max-width: 50rem;
   max-height: 50rem;
 }
+
 h2 {
   padding: 1rem;
 }
+
 p {
   margin: 0;
   padding: 0 0.5rem;
 }
 
+/* Category and Card Section */
 .card {
   border: none;
+  transition: all 0.5s ease-out;
 }
 
-@media screen and (max-width: 1200px) {
+.card:hover {
+  color: var(--darkcyan);
+}
 
+/* Detail Section */
+#instruction-list h5 {
+  padding: 0.5rem 0;
+}
+
+#instruction-list p {
+  font-size: 15px;
+  font-weight: bold;
+  padding: 0.3rem 0;
+}
+
+/* Media Query */
+
+@media screen and (max-width: 1200px) {
+  main {
+    padding: 0 2rem;
+  }
+  .logo h4 {
+    font-size: 28px;
+  }
 }
 
 @media screen and (max-width: 1024px) {
-  .front-page p{
+  main {
+    padding: 0 1rem;
+  }
+  .logo h4 {
+    font-size: 25px;
+  }
+
+  .front-page p {
     padding: 0.5rem;
   }
 }
+
 @media screen and (max-width: 768px) {
+  main {
+    padding: 0;
+  }
   nav {
     padding: 10 0px;
   }
-  form {
-    padding: 0px;
+  .callout {
+    border:none;
   }
-  label {
-    padding: 10 0px;
+  #instruction-list {
+    padding: 1rem;
   }
 }
-@media screen and (max-width: 480px) {
-
-}
-

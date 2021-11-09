@@ -145,7 +145,10 @@ var getNutritionDetail = function(data) {
 function getRecipeList(foodName, foodID) {
 
   if (recentRecipeStorage.length === undefined) {
-    // put modal error alert here! Something like... "Check your localStorage! Delete and refresh!"
+    $(".modal-append").empty();
+    $(".modal-append").append("Check 'recipeList' in your localStorage! Please delete and refresh your page.")
+    let popup = new Foundation.Reveal($("#modal3"));
+    popup.open();
     return;
   }
 
