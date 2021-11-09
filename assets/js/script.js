@@ -119,20 +119,27 @@ $(".trendingRecipes").on("click", "div", function () {
 // Append Recipe List Function
 var appendRow = function(foodName, foodID) {
   let li = $("<li>").attr("id", foodID).text(foodName);
-  $("#recipes-container").append(li);
+  $("#recipes-container").prepend(li);
 }
 
 /* ---------------------- LOAD SECTION ---------------------- */
 
 // Load Recent Recipe List Local Storage
 var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
-
+console.log(recentRecipeStorage);
+console.log(recentRecipeStorage.length-4)
+if (recentRecipeStorage.length >= 4) {
+recentRecipeStorage.splice(0, recentRecipeStorage.length-4)
+  console.log(recentRecipeStorage);
+}
 // clear old data
 $("#recipes-container").empty();
 
 for (let i=0; i < recentRecipeStorage.length; i++) {
   appendRow(recentRecipeStorage[i].name, recentRecipeStorage[i].id);
 }
+
+console.log(recentRecipeStorage)
 
 // Event Listener Section
 searchForm.addEventListener("submit", formSubmitHandler);
