@@ -1,11 +1,22 @@
+:root {
+  --sans-serif: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  --cyan: #0dcaf0;
+  --darkcyan: #0f83ad;
+  --blue: #002b41;
+  --darkblue: #001d2c;
+  --white: #F5FAF9;
+  --grey: #c4c4c4da;
+}
+
 body {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: var(--sans-serif);
 }
 
 /* Navigation Section */
 
 nav {
   padding: 25px;
+  background-color: var(--grey);
 }
 form {
   padding: 30px;
