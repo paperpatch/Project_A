@@ -16,14 +16,13 @@ var trendingRecipe = function() {
   .then(response => {
     if (response.ok) {
       response.json().then(function (data) {
-        $(".modal-append").empty();
-        $(".modal-append").append("Error: ")
-        $("#modal").foundation()
         getTrendingData(data);
       })
     } else {
-      // need to change this alert to modal
-      alert("Error: " + response.statusText)
+      $(".modal-append").empty();
+      $(".modal-append").append("Error: " + response.statusText)
+      let popup = new Foundation.Reveal($("#modal"));
+      popup.open();
     }
   })
   .catch(err => {
