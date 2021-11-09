@@ -1,4 +1,5 @@
 var apiKey = "3a44b6d72cmsh2c9491cf44c4730p152adajsn7b494b9925d6";
+var apiKey2 = "5eedb034a3msha6329e8ee03862bp1ded91jsn5333cfd314b9"
 var sizeList = 20; // input how many results you want
 var searchForm2 = document.querySelector("#search-form2");
 var searchInput2 = document.querySelector("#input-search2");
@@ -8,7 +9,7 @@ var foodRecipeFilter = function (searchValue) {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "tasty.p.rapidapi.com",
-      "x-rapidapi-key": apiKey,
+      "x-rapidapi-key": apiKey2,
     }
   })
   .then(response => {
@@ -38,7 +39,7 @@ var getRecipeCard = function(data) {
     let foodID = data.results[i].id
 
     // create card for each [i]
-    let discoverCard = $("<div>").addClass("card small-3").attr("id", foodID);
+    let discoverCard = $("<div>").addClass("card large-2 medium-4 small-12").attr("id", foodID);
     let discoverSection = $("<div>").addClass("card-section");
     let discoverImg = $("<img>").attr("src", foodImg).addClass("trending-img");
     let discoverSection2 = $("<div>").addClass("card-section");
@@ -74,8 +75,21 @@ var formSubmitHandler = function (event) {
   foodRecipeFilter(searchFoodReplaceSpace);
 }
 
+// Filter Category Function
+
+$(".categories").on("click", "a", function () {
+
+  // set localStorage for detail html page
+  let searchButton = $(this).text();
+  // make title for grid.
+  $("#recipeGridTitle").empty();
+  $("#recipeGridTitle").text("Related Recipes: " + searchButton)
+
+  foodRecipeFilter(searchButton);
+})
+
 // Appended Recent Search List for Details HTML Page
-$("#recipes-container2").on("click", "li", function () {
+$("#recipes-container2").on("click", "img", function () {
   // clear old data
   window.localStorage.removeItem("recentRecipe")
 
@@ -112,10 +126,7 @@ var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) 
 $("#recipes-container2").empty();
 
 for (let i=0; i < recentRecipeStorage.length; i++) {
-  let storageName = recentRecipeStorage[i];
-  let storageID = recentRecipeStorage[i+1];
-  i++;
-  appendRow(storageName, storageID);
+  appendRow(recentRecipeStorage[i].name, recentRecipeStorage[i].id);
 }
 
 // Event Listener Section

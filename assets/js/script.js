@@ -1,4 +1,5 @@
 var apiKey = "3a44b6d72cmsh2c9491cf44c4730p152adajsn7b494b9925d6";
+var apiKey2 = "5eedb034a3msha6329e8ee03862bp1ded91jsn5333cfd314b9"
 var searchForm = document.querySelector("#search-form");
 var searchInput = document.querySelector("#input-search");
 
@@ -9,7 +10,7 @@ var trendingRecipe = function() {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "tasty.p.rapidapi.com",
-      "x-rapidapi-key": apiKey,
+      "x-rapidapi-key": apiKey2,
     }
   })
   .then(response => {
@@ -40,7 +41,7 @@ var getTrendingData = function(data) {
     let foodID = trendingRecipe[i].id
 
     // create card for each [i]
-    let trendingCard = $("<div>").addClass("card small-3").attr("id", foodID);
+    let trendingCard = $("<div>").addClass("card small-12 medium-4 large-3 shrink").attr("id", foodID);
     let trendingSection = $("<div>").addClass("card-section");
     let trendingImg = $("<img>").attr("src", foodImg).addClass("trending-img");
     let trendingSection2 = $("<div>").addClass("card-section");
@@ -74,6 +75,18 @@ var formSubmitHandler = function (event) {
   window.localStorage.setItem("searchRecipe", JSON.stringify(searchFood));
   window.location.assign('./assets/html/recipes.html')
 }
+
+// Filter Category Section
+
+$(".categories").on("click", "a", function () {
+  // clear old data
+  window.localStorage.removeItem("searchRecipe")
+
+  // set localStorage for detail html page
+  let searchButton = $(this).text();
+  window.localStorage.setItem("searchRecipe", JSON.stringify(searchButton));
+  window.location.assign('./assets/html/recipes.html')
+})
 
 // Appended Recent Search List for Details HTML Page
 $("#recipes-container").on("click", "li", function () {
@@ -112,10 +125,7 @@ var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) 
 $("#recipes-container").empty();
 
 for (let i=0; i < recentRecipeStorage.length; i++) {
-  let storageName = recentRecipeStorage[i];
-  let storageID = recentRecipeStorage[i+1];
-  i++;
-  appendRow(storageName, storageID);
+  appendRow(recentRecipeStorage[i].name, recentRecipeStorage[i].id);
 }
 
 // Event Listener Section
