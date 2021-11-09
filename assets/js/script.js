@@ -16,6 +16,9 @@ var trendingRecipe = function() {
   .then(response => {
     if (response.ok) {
       response.json().then(function (data) {
+        $(".modal-append").empty();
+        $(".modal-append").append("Error: ")
+        $("#modal").foundation()
         getTrendingData(data);
       })
     } else {
