@@ -103,6 +103,17 @@ p {
   color: var(--darkcyan);
 }
 
+/* Detail Section */
+#instruction-list h5 {
+  padding: 0.5rem 0;
+}
+
+#instruction-list p {
+  font-size: 15px;
+  font-weight: bold;
+  padding: 0.3rem 0;
+}
+
 /* Media Query */
 
 @media screen and (max-width: 1200px) {
@@ -136,5 +147,8 @@ p {
   }
   .callout {
     border:none;
+  }
+  #instruction-list {
+    padding: 1rem;
   }
 }
