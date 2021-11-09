@@ -20,11 +20,17 @@ var foodDetail = function(foodID) {
         getRecipeDetail(data);
       })
     } else {
-      // need to change this alert to modal
-      alert("Error: " + response.statusText)
+      $(".modal-append").empty();
+      $(".modal-append").append("Error: " + response.statusText)
+      let popup = new Foundation.Reveal($("#modal3"));
+      popup.open();
     }
   })
   .catch(err => {
+    $(".modal-append").empty();
+    $(".modal-append").append("Catch Error: Check console log")
+    let popup = new Foundation.Reveal($("#modal3"));
+    popup.open();
     console.error(err);
   });
 }
@@ -91,11 +97,17 @@ var fetchNutrition = function(foodName) {
         getNutritionDetail(data);
       })
     } else {
-      // need to change this alert to modal
-      alert("Error: " + response.statusText)
+      $(".modal-append").empty();
+      $(".modal-append").append("Error: " + response.statusText)
+      let popup = new Foundation.Reveal($("#modal3"));
+      popup.open();
     }
   })
   .catch(err => {
+    $(".modal-append").empty();
+    $(".modal-append").append("Catch Error: Check console log")
+    let popup = new Foundation.Reveal($("#modal3"));
+    popup.open();
     console.error(err);
   });
 }

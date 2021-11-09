@@ -19,11 +19,17 @@ var foodRecipeFilter = function (searchValue) {
         getRecipeCard(data);
       })
     } else {
-      // need to change this alert to modal
-      alert("Error: " + response.statusText)
+      $(".modal-append").empty();
+      $(".modal-append").append("Error: " + response.statusText)
+      let popup = new Foundation.Reveal($("#modal2"));
+      popup.open();
     }
   })
   .catch(err => {
+    $(".modal-append").empty();
+    $(".modal-append").append("Catch Error: Check console log")
+    let popup = new Foundation.Reveal($("#modal2"));
+    popup.open();
     console.error(err);
   });
 }
