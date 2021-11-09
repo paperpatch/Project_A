@@ -26,6 +26,10 @@ var trendingRecipe = function() {
     }
   })
   .catch(err => {
+    $(".modal-append").empty();
+    $(".modal-append").append("Catch Error: Check console log")
+    let popup = new Foundation.Reveal($("#modal"));
+    popup.open();
     console.error(err);
   });
 }
