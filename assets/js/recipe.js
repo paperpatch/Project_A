@@ -114,7 +114,7 @@ $("#recipeGrid").on("click", "div", function () {
 
   // set localStorage for detail html page
   let searchList = $(this).attr("id");
-  console.log(searchList);
+  
   window.localStorage.setItem("recentRecipe", JSON.stringify(searchList));
   window.location.assign('../html/detail.html')
 })
@@ -130,17 +130,15 @@ var appendRow = function(foodName, foodID) {
 
 // Load Recent Recipe List Local Storage
 var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
-console.log(recentRecipeStorage);
-console.log(recentRecipeStorage.length-4)
+// Limits list to 4 total items in the array. 
 if (recentRecipeStorage.length >= 4) {
 recentRecipeStorage.splice(0, recentRecipeStorage.length-4)
-  console.log(recentRecipeStorage);
+  
 }
 // clear old data
 $("#recipes-container2").empty();
 
 for (let i=0; i < recentRecipeStorage.length; i++) {
-  console.log(recentRecipeStorage)
   appendRow(recentRecipeStorage[i].name, recentRecipeStorage[i].id);
 }
 

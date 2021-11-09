@@ -126,11 +126,10 @@ var appendRow = function(foodName, foodID) {
 
 // Load Recent Recipe List Local Storage
 var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
-console.log(recentRecipeStorage);
-console.log(recentRecipeStorage.length-4)
+// Limits list to 4 total items in the array. 
 if (recentRecipeStorage.length >= 4) {
 recentRecipeStorage.splice(0, recentRecipeStorage.length-4)
-  console.log(recentRecipeStorage);
+
 }
 // clear old data
 $("#recipes-container").empty();

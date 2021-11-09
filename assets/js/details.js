@@ -167,7 +167,6 @@ function getRecipeList(foodName, foodID) {
   }
   // console.log("Third check. Appends every time this appears.")
   recentRecipeStorage[recentRecipeStorage.length]={name: foodName, id: foodID}
-  console.log(recentRecipeStorage)
   window.localStorage.setItem("recipeList", JSON.stringify(recentRecipeStorage));
 
   appendRow(foodName, foodID);
@@ -209,11 +208,10 @@ $("#recipes-container3").on("click", "li", function () {
 
 // Load Recent Recipe List Local Storage
 var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
-// console.log(recentRecipeStorage);
-// console.log(recentRecipeStorage.length-4)
+// Limits list to 4 total items in the array. 
 if (recentRecipeStorage.length >= 4) {
 recentRecipeStorage.splice(0, recentRecipeStorage.length-4)
-  // console.log(recentRecipeStorage);
+
 }
 // clear old data
 $("#recipes-container3").empty();
