@@ -132,9 +132,17 @@ var getNutritionDetail = function(data) {
 // Append Recipes List Function
 function getRecipeList(foodName, foodID) {
 
+  if (recentRecipeStorage.length === undefined) {
+    // put modal error alert here! Something like... "Check your localStorage! Delete and refresh!"
+    return;
+  }
+
   // check if array exist. First array case only
-  if (recentRecipeStorage.length === 0 || recentRecipeStorage.length === undefined) {
-    // console.log("First check. This should be the only check out of 3.")
+  if (recentRecipeStorage.length === 0) {
+    recentRecipeStorage[recentRecipeStorage.length]={name: foodName, id: foodID}
+    window.localStorage.setItem("recipeList", JSON.stringify(recentRecipeStorage));
+
+    appendRow(foodName, foodID);
     return;
   }
 
