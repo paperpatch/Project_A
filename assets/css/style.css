@@ -19,7 +19,7 @@ nav {
   background-color: var(--grey);
 }
 
-#fridge-logo {
+.fridge-logo {
   display: block;
   max-height: 10rem;
   margin-left: auto;
@@ -89,11 +89,11 @@ main {
 .front-image {
   max-width: 40rem;
   max-height: 40rem;
-  border-radius: 10%;
+  border-radius: 15px;
 }
 
 .trending-img {
-  border-radius: 10%;
+  border-radius: 15px;
 }
 
 h2 {
@@ -121,7 +121,7 @@ p {
   max-width: 40rem;
   max-height: 40rem;
   border: var(--grey) solid 5px;
-  border-radius: 10%;
+  border-radius: 15px;
 }
 
 #instruction-list h5 {
