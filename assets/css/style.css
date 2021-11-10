@@ -80,8 +80,9 @@ main {
 }
 
 .front-image {
-  max-width: 50rem;
-  max-height: 50rem;
+  max-width: 40rem;
+  max-height: 40rem;
+  border-radius: 10%;
 }
 
 h2 {
@@ -151,4 +152,15 @@ p {
   #instruction-list {
     padding: 1rem;
   }
+}
+
+.detail-img {
+  max-width: 40rem;
+  max-height: 40rem;
+  border: var(--grey) solid 5px;
+  border-radius: 10%;
+}
+
+.trending-img {
+  border-radius: 10%;
 }
