@@ -124,6 +124,10 @@ p {
   border-radius: 15px;
 }
 
+#instruction-list {
+  padding: 0 0.5rem 0 0;
+}
+
 #instruction-list h5 {
   padding: 0.5rem 0;
 }
