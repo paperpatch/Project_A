@@ -1,6 +1,8 @@
 var apiKey = "3a44b6d72cmsh2c9491cf44c4730p152adajsn7b494b9925d6";
+var apiKey2 = "5eedb034a3msha6329e8ee03862bp1ded91jsn5333cfd314b9";
 var searchForm3 = document.querySelector("#search-form3");
 var searchInput3 = document.querySelector("#input-search3");
+
 
 /* ---------------------- RECIPE SECTION ---------------------- */
 
@@ -9,7 +11,7 @@ var foodDetail = function(foodID) {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "tasty.p.rapidapi.com",
-      "x-rapidapi-key": apiKey,
+      "x-rapidapi-key": apiKey2,
     }
   })
   .then(response => {
@@ -18,11 +20,17 @@ var foodDetail = function(foodID) {
         getRecipeDetail(data);
       })
     } else {
-      // need to change this alert to modal
-      alert("Error: " + response.statusText)
+      $(".modal-append").empty();
+      $(".modal-append").append("Error: " + response.statusText)
+      let popup = new Foundation.Reveal($("#modal3"));
+      popup.open();
     }
   })
   .catch(err => {
+    $(".modal-append").empty();
+    $(".modal-append").append("Catch Error: Check console log")
+    let popup = new Foundation.Reveal($("#modal3"));
+    popup.open();
     console.error(err);
   });
 }
@@ -89,11 +97,17 @@ var fetchNutrition = function(foodName) {
         getNutritionDetail(data);
       })
     } else {
-      // need to change this alert to modal
-      alert("Error: " + response.statusText)
+      $(".modal-append").empty();
+      $(".modal-append").append("Error: " + response.statusText)
+      let popup = new Foundation.Reveal($("#modal3"));
+      popup.open();
     }
   })
   .catch(err => {
+    $(".modal-append").empty();
+    $(".modal-append").append("Catch Error: Check console log")
+    let popup = new Foundation.Reveal($("#modal3"));
+    popup.open();
     console.error(err);
   });
 }
@@ -128,29 +142,51 @@ var getNutritionDetail = function(data) {
 /* ---------------------- APPEND RECIPES LIST SECTION ---------------------- */
 
 // Append Recipes List Function
+function getRecipeList(foodName, foodID) {
 
-var getRecipeList = function (foodName, foodID) {
-  // Add recipes to list, don't let it repeat. If recentRecipe can be found. 1 for yes. -1 for no.
-  if (recentRecipeStorage.indexOf(foodName) === -1) {
-    recentRecipeStorage.unshift(foodName, foodID);
+  if (recentRecipeStorage.length === undefined) {
+    $(".modal-append").empty();
+    $(".modal-append").append("Check 'recipeList' in your localStorage! Please delete and refresh your page.")
+    let popup = new Foundation.Reveal($("#modal3"));
+    popup.open();
+    return;
+  }
+
+  // check if array exist. First array case only
+  if (recentRecipeStorage.length === 0) {
+    recentRecipeStorage[recentRecipeStorage.length]={name: foodName, id: foodID}
     window.localStorage.setItem("recipeList", JSON.stringify(recentRecipeStorage));
 
     appendRow(foodName, foodID);
+    return;
   }
+
+  for (let i=0; i<recentRecipeStorage.length; i++) {
+    // check if name already exist
+    if (recentRecipeStorage[i].name === foodName ) {
+      // console.log("Existing check. No appending should happen")
+      return;
+    }
+  }
+  // console.log("Third check. Appends every time this appears.")
+  recentRecipeStorage[recentRecipeStorage.length]={name: foodName, id: foodID}
+  window.localStorage.setItem("recipeList", JSON.stringify(recentRecipeStorage));
+
+  appendRow(foodName, foodID);
 };
 
 // Append Recipe List Function
 
-var appendRow = function(foodName, foodID) {
+function appendRow(foodName, foodID) {
   let li = $("<li>").attr("id", foodID).text(foodName);
-  $("#recipes-container3").append(li);
+  $("#recipes-container3").prepend(li);
 }
 
 /* ---------------------- UTILITIES SECTION ---------------------- */
 
 // Search Function
 
-var formSubmitHandler = function (event) {
+function formSubmitHandler(event) {
   event.preventDefault();
 
   // get value from input element
@@ -175,15 +211,16 @@ $("#recipes-container3").on("click", "li", function () {
 
 // Load Recent Recipe List Local Storage
 var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
+// Limits list to 10 total items in the array. 
+if (recentRecipeStorage.length >= 10) {
+recentRecipeStorage.splice(0, recentRecipeStorage.length-10)
 
+}
 // clear old data
 $("#recipes-container3").empty();
 
-for (let i=0; i < recentRecipeStorage.length; i++) {
-  let storageName = recentRecipeStorage[i];
-  let storageID = recentRecipeStorage[i+1];
-  i++;
-  appendRow(storageName, storageID);
+for (let i=1; i < recentRecipeStorage.length; i++) {
+  appendRow(recentRecipeStorage[i].name, recentRecipeStorage[i].id);
 }
 
 // Event Listener Section
@@ -192,3 +229,25 @@ searchForm3.addEventListener("submit", formSubmitHandler);
 // Load Searched Recipe
 var foodID = JSON.parse(window.localStorage.getItem("recentRecipe")) || [];
 foodDetail(foodID);
+
+/* ---------------------- Scroll to top button ---------------------- */
+
+//Get the button:
+mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}

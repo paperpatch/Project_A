@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
     integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.3/dist/css/foundation.min.css"
     crossorigin="anonymous">
   <link rel="stylesheet" href="../css/style.css">
@@ -16,9 +15,9 @@
 </head>
 
 <body class="grid-x">
-  <nav class="large-2 medium-3 small-4">
-    <img class="align-middle" src="../../assets/images/open_fridge.PNG" style="width: 100%;">
-    <p>Good Meals, Good Life</p>
+  <nav class="large-2 medium-3 small-12">
+    <a class="logo" href="./index.html"><h4>open<mark class="blue">Fridge</mark></h4></a>
+    <p class="slogan">Good Meals, <mark class="blue">Good Life</mark></p>
     <hr>
     <div class="grid-y">
       <div class="medium-12">
@@ -33,45 +32,48 @@
     <div class="medium-12">
       <form class="menu vertical">
         <h4>Recent Recipes</h4>
-        <ul id="recipes-container3" class="menu vertical">
+        <ul id="recipes-container3" class="menu vertical"></ul>
 
-        </ul>
       </form>
     </div>
   </nav>
 
-  <main class="large-10 medium-9 small-8 column">
-    <form id="search-form3">
-      <div class="grid-x">
-        <label class="medium-7 fa-solid fa-magnifying-glass fa-lg text-right" for="input-search3"></label>
-        <input id="input-search3" class="medium-5" type='text' autofocus="true" placeholder="Search for Recipes...">
-        <button type="submit" class="btn"></button>
-      </div>
+  <main class="large-10 medium-9 small-12">
+    <form id="search-form3" class="search-form grid-x">
+      <label class="small-1 medium-2 large-7 fa-solid fa-magnifying-glass fa-lg text-right" for="input-search"></label>
+      <input id="input-search3" class="small-11 medium-10 large-5" type='text' autofocus="true" placeholder="Search for Recipes...">
+      <button type="submit" class="btn"></button>
     </form>
 
     <div class="grid-x grid-padding-x align-top align-justify">
       <!-- Recipes box -->
-      <section class="large-7 medium-6 small-6">
+      <section class="large-8 medium-12">
         <div id="instruction-list"></div>
       </section>
 
       <!-- Nutrition value box -->
-      <section class="large-5 medium-6 small-6">
+      <section class="large-4 medium-12">
         <div class=""></div>
           <div class="callout align-self-top">
             <h4>Nutrition Values</h4>
             <div id="nutrition-list"></div>
-            <!-- append number + instructions -->
 
           </div>
         </div>
       </section>
     </div>
+
+    <div class="reveal" id="modal3" data-reveal>
+      <h2>Oops! Something went wrong!</h2>
+      <div class="modal-append"></div>
+
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
   </main>
-
-  <footer>
-
-  </footer>
 
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>
@@ -79,9 +81,7 @@
     integrity="sha256-xH4q8N0pEzrZMaRmd7gQVcTZiFei+HfRTBPJ1OGXC0k=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.3/dist/js/foundation.min.js" crossorigin="anonymous">
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js" crossorigin="anonymous"></script>
   <script src="../js/details.js"></script>
 </body>
 
