@@ -21,7 +21,7 @@ Built With:
 - CSS
 - JavaScript
 - Foundation CSS Framework 6.7.3
-- jQuery
+- jQuery 3.6.0
 - Tasty API
 - Ninjas Nutritional API
 - Font Awesome 6.0
