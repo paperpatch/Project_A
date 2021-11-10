@@ -179,7 +179,7 @@ function getRecipeList(foodName, foodID) {
 
 function appendRow(foodName, foodID) {
   let li = $("<li>").attr("id", foodID).text(foodName);
-  $("#recipes-container3").append(li);
+  $("#recipes-container3").prepend(li);
 }
 
 /* ---------------------- UTILITIES SECTION ---------------------- */
@@ -211,9 +211,9 @@ $("#recipes-container3").on("click", "li", function () {
 
 // Load Recent Recipe List Local Storage
 var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
-// Limits list to 4 total items in the array. 
-if (recentRecipeStorage.length >= 4) {
-recentRecipeStorage.splice(0, recentRecipeStorage.length-4)
+// Limits list to 10 total items in the array. 
+if (recentRecipeStorage.length >= 10) {
+recentRecipeStorage.splice(0, recentRecipeStorage.length-10)
 
 }
 // clear old data
