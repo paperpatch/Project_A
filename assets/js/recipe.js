@@ -79,7 +79,9 @@ var formSubmitHandler = function (event) {
   // need to replace 'spaces' with %20 for fetch request to work
   let searchFoodReplaceSpace = searchFood.split(" ").join("%20");
   foodRecipeFilter(searchFoodReplaceSpace);
+  
 }
+
 
 // Filter Category Function
 
@@ -112,6 +114,7 @@ $("#recipeGrid").on("click", "div", function () {
 
   // set localStorage for detail html page
   let searchList = $(this).attr("id");
+  
   window.localStorage.setItem("recentRecipe", JSON.stringify(searchList));
   window.location.assign('../html/detail.html')
 })
@@ -127,7 +130,11 @@ var appendRow = function(foodName, foodID) {
 
 // Load Recent Recipe List Local Storage
 var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
-
+// Limits list to 4 total items in the array. 
+if (recentRecipeStorage.length >= 4) {
+recentRecipeStorage.splice(0, recentRecipeStorage.length-4)
+  
+}
 // clear old data
 $("#recipes-container2").empty();
 

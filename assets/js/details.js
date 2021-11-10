@@ -211,11 +211,15 @@ $("#recipes-container3").on("click", "li", function () {
 
 // Load Recent Recipe List Local Storage
 var recentRecipeStorage = JSON.parse(window.localStorage.getItem("recipeList")) || [];
+// Limits list to 4 total items in the array. 
+if (recentRecipeStorage.length >= 4) {
+recentRecipeStorage.splice(0, recentRecipeStorage.length-4)
 
+}
 // clear old data
 $("#recipes-container3").empty();
 
-for (let i=0; i < recentRecipeStorage.length; i++) {
+for (let i=1; i < recentRecipeStorage.length; i++) {
   appendRow(recentRecipeStorage[i].name, recentRecipeStorage[i].id);
 }
 
