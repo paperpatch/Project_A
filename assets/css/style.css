@@ -19,6 +19,13 @@ nav {
   background-color: var(--grey);
 }
 
+#fridge-logo {
+  display: block;
+  max-height: 10rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .logo h4 {
   font-size: 33px;
   font-weight: bold;
