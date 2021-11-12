@@ -1,5 +1,5 @@
-var apiKey = "3a44b6d72cmsh2c9491cf44c4730p152adajsn7b494b9925d6";
-var apiKey2 = "5eedb034a3msha6329e8ee03862bp1ded91jsn5333cfd314b9";
+var apiKey = "7eb3dee3c7mshca977b3e70ebd78p1899f9jsnf27498159e6b";
+var apiKey2 = "7eb3dee3c7mshca977b3e70ebd78p1899f9jsnf27498159e6b";
 var searchForm3 = document.querySelector("#search-form3");
 var searchInput3 = document.querySelector("#input-search3");
 
